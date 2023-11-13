@@ -140,6 +140,8 @@ public class Generator {
                     break;
             default:
         }
+        CreateExtra createExtra = new CreateExtra();
+        createExtra.createExtra(connection);
     }
     private static boolean isRowEmpty(Row row) {
         if (row == null) {return true;}

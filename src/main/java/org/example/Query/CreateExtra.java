@@ -1,6 +1,5 @@
 package org.example.Query;
 
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
 
@@ -12,7 +11,7 @@ import java.sql.Types;
 public class CreateExtra {
     InsertQuery insertQuery = new InsertQuery();
 
-    public void createCategoryExtra(Connection connection) throws SQLException {
+    public void createExtra(Connection connection) throws SQLException {
         Get get = new Get(connection);
         int idCategoryIfood = get.getLastInsertId("category") + 1;
         String tableCategory1 = "category";
@@ -33,12 +32,12 @@ public class CreateExtra {
         PreparedStatement vincularCodigo = connection.prepareStatement(insertQueryProduct);
         vincularCodigo.setString(1, "Vincular codigo PDV");//nameValue);
         vincularCodigo.setString(2, "Usada para vincular código PDV");//descriptionValue);
-        vincularCodigo.setInt(3, 999);//internal_code);
+        vincularCodigo.setInt(3, 9999);//internal_code);
         vincularCodigo.setString(4, "");//barcodeValue);
         vincularCodigo.setInt(5, 1);//department_id);
         vincularCodigo.setInt(6, 1);//typeValue);
         vincularCodigo.setInt(7, 0);//brand_id);
-//        vincularCodigo.setInt(8, );//category_id);
+        vincularCodigo.setInt(8, idCategoryIfood);//category_id);
         vincularCodigo.setString(9, "u");//measure_unit);
         vincularCodigo.setInt(10, 0);//priceValue);
         vincularCodigo.setInt(11, 0);//aux_price);
