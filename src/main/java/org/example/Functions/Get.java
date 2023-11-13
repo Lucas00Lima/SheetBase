@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.example.DataAcess;
 import org.example.Query.CreateCategory;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +15,14 @@ import java.util.Map;
 
 public class Get {
     private final Connection connection;
+
     public Get(Connection connection) throws SQLException {
         this.connection = connection;
     }
+
     final private DataFormatter dataFormatter = new DataFormatter();
     final private static Map<Integer, Integer> lastInternalCodeMap = new HashMap<>();
+
     public int getNextInternalCode(int categoryId) {
         int lastInternalCode = lastInternalCodeMap.getOrDefault(categoryId, 0);
         int internalCode = categoryId * 100 + lastInternalCode;
@@ -30,17 +32,15 @@ public class Get {
         lastInternalCodeMap.put(categoryId, lastInternalCode + 1);
         return internalCode;
     }
+
     public boolean consultExist(String code) throws SQLException {
-        String query = "SELECT id FROM product WHERE id = ?";
+        String query = "SELECT internal_code FROM product WHERE internal_code = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, code);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            return true;
-        } else {
-            return false;
-        }
+        return resultSet.next();
     }
+
     public String verifyInternalCode(Cell code, int categoryId) throws SQLException {
         String internalCode = dataFormatter.formatCellValue(code);
         if (internalCode == null || internalCode.isEmpty()) {
@@ -48,6 +48,12 @@ public class Get {
         } else {
             if (consultExist(internalCode)) {
                 internalCode += 9;
+                if (consultExist(internalCode)) {
+                    internalCode += 99;
+                    if (consultExist(internalCode)) {
+                        internalCode += 999;
+                    }
+                }
             } else {
                 return internalCode;
             }
@@ -86,6 +92,7 @@ public class Get {
         }
         return lasRowid;
     }
+
     public boolean getSubCategory(int rowIndex, Sheet sheet) {
         // Verifica caso a nextCategoryValue retorne com um valor, ele define que a
         // categoria atual é uma categoria Father e a debaixo é uma sub categoria
@@ -100,6 +107,7 @@ public class Get {
         }
         return false;
     }
+
     public int stateId(Cell stateCell) throws SQLException {
         String state = dataFormatter.formatCellValue(stateCell);
         int id = 0;
@@ -116,6 +124,7 @@ public class Get {
         stateId.close();
         return id;
     }
+
     public int cityId(Cell cityCell) throws SQLException {
         String city = dataFormatter.formatCellValue(cityCell);
         int id = 0;
@@ -156,7 +165,7 @@ public class Get {
     }
 
     public int numberCategory(Cell categoriaCell) throws SQLException {
-        int idCategory = 0;
+        int idCategory;
         String category = dataFormatter.formatCellValue(categoriaCell);
         String query = "SELECT id FROM category WHERE name = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -166,7 +175,6 @@ public class Get {
                 idCategory = resultSet.getInt("id");
             } else {
                 CreateCategory createCategory = new CreateCategory();
-                DataAcess dataAcess = new DataAcess();
                 idCategory = createCategory.createCategory(connection, categoriaCell);
             }
         } catch (SQLException e) {
