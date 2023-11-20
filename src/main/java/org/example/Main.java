@@ -6,12 +6,11 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.example.Functions.Update;
 import org.example.Generetor.*;
 
 public class Main {
-    public static void main(String[] args) throws EncryptedDocumentException, IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException {
         DataAcess dataAcess = new DataAcess();
         int responseUpdate = JOptionPane.showConfirmDialog(null, "Deseja atualizar ?", "Confirmação",
                 JOptionPane.YES_NO_OPTION);

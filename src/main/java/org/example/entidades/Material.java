@@ -1,14 +1,22 @@
 package org.example.entidades;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Material {
-    private double id;
-    private String name;
-    private String medida;
+    final private double id;
+    final private String name;
+    final private String medida;
+
+    public Material(double id, String name, String medida) {
+        this.id = id;
+        this.name = name;
+        this.medida = medida;
+    }
+    public double getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getMedida() {
+        return medida;
+    }
 }
