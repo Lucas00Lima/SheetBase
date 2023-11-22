@@ -3,9 +3,7 @@ package org.example;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
-
 import org.example.Functions.Update;
 import org.example.Generetor.*;
 
