@@ -1,6 +1,7 @@
 package org.example.Functions;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.example.Query.CreateCategory;
 
@@ -12,9 +13,11 @@ import java.util.Map;
 
 public class Get {
     private final Connection connection;
+
     public Get(Connection connection) throws SQLException {
         this.connection = connection;
     }
+
     final private DataFormatter dataFormatter = new DataFormatter();
     final private static Map<Integer, Integer> lastInternalCodeMap = new HashMap<>();
 
@@ -177,13 +180,32 @@ public class Get {
         }
         return idCategory;
     }
-    public int createCategoryMain (Cell categoriaCell, Cell categoryPrincipal) throws SQLException {
-        int idcategoryPrincipal = 0;
+    public int createCategoryMain(Cell categoriaCell, Cell categoryPrincipal) throws SQLException {
         CreateCategory createCategory = new CreateCategory();
-        if (categoryPrincipal != null) {
+        if (categoryPrincipal == null || categoryPrincipal.getCellType() == CellType.BLANK) {
+            return createCategory.createCategory(connection, categoriaCell, 0, 0);
+        } else {
             //Criação da categoria principal
-            idcategoryPrincipal = createCategory.createCategory(connection, categoryPrincipal, 0, 1);
+            int idCategoryPrincipal = isCategoryExist(categoryPrincipal);
+            if (idCategoryPrincipal > 0) {
+                return createCategory.createCategory(connection, categoriaCell, idCategoryPrincipal, 0);
+            } else {
+                idCategoryPrincipal = createCategory.createCategory(connection, categoryPrincipal, 0, 1);
+                return createCategory.createCategory(connection, categoriaCell, idCategoryPrincipal, 0);
+            }
         }
-        return createCategory.createCategory(connection, categoriaCell, idcategoryPrincipal, 0);
+    }
+    public int isCategoryExist(Cell categoryPrincipal) throws SQLException {
+        int idCategory = 0;
+        String category = dataFormatter.formatCellValue(categoryPrincipal);
+        String query = "SELECT id FROM category WHERE name = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, category);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                idCategory = resultSet.getInt("id");
+            }
+        }
+        return idCategory;
     }
 }
