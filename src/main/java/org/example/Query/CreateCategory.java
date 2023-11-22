@@ -11,7 +11,7 @@ import java.sql.*;
 public class CreateCategory {
     private int idCategory = 0;
     private DataFormatter dataFormatter = new DataFormatter();
-    public int createCategory(Connection connection, Cell categoryCell) throws SQLException {
+    public int createCategory(Connection connection, Cell categoryCell, int father_id, int is_father) throws SQLException {
         String table = "category";
         Get get = new Get(connection);
         InsertQuery insert = new InsertQuery();
@@ -32,8 +32,8 @@ public class CreateCategory {
         categoryStatement.setString(11, ""); //Parameters
         categoryStatement.setInt(12, 0); //Panel_order_elements
         categoryStatement.setString(13, nameValue); //Panel_name
-        categoryStatement.setInt(14, 0); //Father_Id
-        categoryStatement.setInt(15, 0); //is_Father_category
+        categoryStatement.setInt(14, father_id); //Father_Id
+        categoryStatement.setInt(15, is_father); //is_Father_category
         categoryStatement.setString(16, ""); //Kitchen_notes
         categoryStatement.execute();
         return idCategory;
