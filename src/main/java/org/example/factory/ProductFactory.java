@@ -3,7 +3,6 @@ package org.example.factory;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.TreatmentRows;
 import org.example.entidades.Product;
@@ -47,6 +46,7 @@ public class ProductFactory implements TreatmentRows {
         Get get = new Get(connection);
 
         int categoryId = get.numberCategory(categoryCell);
+        int categoryPrincipal = get.numberCategory(categoryCellPrincipal);
         String internalCode = get.verifyInternalCode(codeCell, categoryId);
         String barcode = dataFormatter.formatCellValue(barcodeCell);
         String name = dataFormatter.formatCellValue(nameCell);
@@ -78,7 +78,7 @@ public class ProductFactory implements TreatmentRows {
         int balcony = treatmentVariable.tratmentOrigem(balconyCell);
         int status = treatmentVariable.tratmentOrigem(statusCell);
 
-        return new Product(internalCode, barcode, name, categoryId, description, price, type, type2, combo , cost,  ncm, cfop, cest, cst,
+        return new Product(internalCode, barcode, name, categoryId, categoryPrincipal, description, price, type, type2, combo , cost,  ncm, cfop, cest, cst,
                 icms, piscod, pis, cofinscod, cofins, icmsRed, currentStock, measureUnit, delivery, hall_table, card, balcony, status);
     }
 }
