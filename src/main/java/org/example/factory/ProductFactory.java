@@ -45,8 +45,7 @@ public class ProductFactory implements TreatmentRows {
 
         Get get = new Get(connection);
 
-        int categoryId = get.numberCategory(categoryCell);
-        int categoryPrincipal = get.numberCategory(categoryCellPrincipal);
+        int categoryId = get.numberCategory(categoryCell,categoryCellPrincipal);
         String internalCode = get.verifyInternalCode(codeCell, categoryId);
         String barcode = dataFormatter.formatCellValue(barcodeCell);
         String name = dataFormatter.formatCellValue(nameCell);

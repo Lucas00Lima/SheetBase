@@ -164,8 +164,8 @@ public class Get {
         return false;
     }
 
-    public int numberCategory(Cell categoriaCell) throws SQLException {
-        int idCategory;
+    public int numberCategory(Cell categoriaCell, Cell categoryPrincipal) {
+        int idCategory = 0;
         String category = dataFormatter.formatCellValue(categoriaCell);
         String query = "SELECT id FROM category WHERE name = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -174,13 +174,22 @@ public class Get {
             if (resultSet.next()) {
                 idCategory = resultSet.getInt("id");
             } else {
-                CreateCategory createCategory = new CreateCategory();
-                idCategory = createCategory.createCategory(connection, categoriaCell);
+                //Criação de categoria
+                idCategory = createCategoryMain(categoriaCell, categoryPrincipal);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e; // Rethrow the exception if needed
         }
         return idCategory;
+    }
+    public int createCategoryMain (Cell categoriaCell, Cell categoryPrincipal) throws SQLException {
+        int idcategoryPrincipal = 0;
+        CreateCategory createCategory = new CreateCategory();
+        if (categoryPrincipal != null) {
+            //Criação da categoria principal
+            idcategoryPrincipal = createCategory.createCategory(connection, categoryPrincipal, 0, 1);
+        }
+        return createCategory.createCategory(connection, categoriaCell, idcategoryPrincipal, 0);
     }
 }
