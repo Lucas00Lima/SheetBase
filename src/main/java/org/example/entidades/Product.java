@@ -4,7 +4,6 @@ public class Product {
     final private String barcode;
     final private String name;
     final private int category;
-    final private int categoryPrincipal;
     final private String description;
     final private int price;
     final private int type;
@@ -29,12 +28,11 @@ public class Product {
     final private int balcony;
     final private int status;
 
-    public Product(String internalCode, String barcode, String name, int category, int categoryPrincipal, String description, int price, int type, int type2, String combo, int cost, String ncm, String cfop, String cest, String cst, int icms, String piscod, String pis, String cofinscod, String cofins, int icmdRed, int currentStock, String measureUnit, int delivery, int hall_table, int card, int balcony, int status) {
+    public Product(String internalCode, String barcode, String name, int category, String description, int price, int type, int type2, String combo, int cost, String ncm, String cfop, String cest, String cst, int icms, String piscod, String pis, String cofinscod, String cofins, int icmdRed, int currentStock, String measureUnit, int delivery, int hall_table, int card, int balcony, int status) {
         this.internalCode = internalCode;
         this.barcode = barcode;
         this.name = name;
         this.category = category;
-        this.categoryPrincipal = categoryPrincipal;
         this.description = description;
         this.price = price;
         this.type = type;
@@ -71,9 +69,6 @@ public class Product {
     }
     public int getCategory() {
         return category;
-    }
-    public int getCategoryPrincipal() {
-        return categoryPrincipal;
     }
     public String getDescription() {
         return description;

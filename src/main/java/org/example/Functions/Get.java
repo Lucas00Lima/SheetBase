@@ -2,9 +2,6 @@ package org.example.Functions;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Query.CreateCategory;
 
 import java.sql.*;
@@ -15,11 +12,9 @@ import java.util.Map;
 
 public class Get {
     private final Connection connection;
-
     public Get(Connection connection) throws SQLException {
         this.connection = connection;
     }
-
     final private DataFormatter dataFormatter = new DataFormatter();
     final private static Map<Integer, Integer> lastInternalCodeMap = new HashMap<>();
 
@@ -83,30 +78,30 @@ public class Get {
         return lastInsertedCategoryId;
     }
 
-    public int idGetPai(int lasRowid) throws SQLException {
-        String categoryIdPai = "SELECT id FROM category WHERE father_id = 0 ORDER BY id DESC LIMIT 1";
-        Statement idPai = connection.createStatement();
-        ResultSet categoryResult = idPai.executeQuery(categoryIdPai);
-        if (categoryResult.next()) {
-            lasRowid = categoryResult.getInt("id");
-        }
-        return lasRowid;
-    }
-
-    public boolean getSubCategory(int rowIndex, Sheet sheet) {
-        // Verifica caso a nextCategoryValue retorne com um valor, ele define que a
-        // categoria atual é uma categoria Father e a debaixo é uma sub categoria
-        DataFormatter dataFormatter = new DataFormatter();
-        int lastRowIndex = sheet.getLastRowNum();
-        if (rowIndex < lastRowIndex) {
-            Row nextRow = sheet.getRow(rowIndex + 1);
-            Cell nextCategoryCell = (nextRow != null) ? nextRow.getCell(0) : null;
-            String nextCategoryValue = (nextCategoryCell != null) ? dataFormatter.formatCellValue(nextCategoryCell)
-                    : "";
-            return !nextCategoryValue.isEmpty();
-        }
-        return false;
-    }
+//    public int idGetPai(int lasRowid) throws SQLException {
+//        String categoryIdPai = "SELECT id FROM category WHERE father_id = 0 ORDER BY id DESC LIMIT 1";
+//        Statement idPai = connection.createStatement();
+//        ResultSet categoryResult = idPai.executeQuery(categoryIdPai);
+//        if (categoryResult.next()) {
+//            lasRowid = categoryResult.getInt("id");
+//        }
+//        return lasRowid;
+//    }
+//
+//    public boolean getSubCategory(int rowIndex, Sheet sheet) {
+//        // Verifica caso a nextCategoryValue retorne com um valor, ele define que a
+//        // categoria atual é uma categoria Father e a debaixo é uma sub categoria
+//        DataFormatter dataFormatter = new DataFormatter();
+//        int lastRowIndex = sheet.getLastRowNum();
+//        if (rowIndex < lastRowIndex) {
+//            Row nextRow = sheet.getRow(rowIndex + 1);
+//            Cell nextCategoryCell = (nextRow != null) ? nextRow.getCell(0) : null;
+//            String nextCategoryValue = (nextCategoryCell != null) ? dataFormatter.formatCellValue(nextCategoryCell)
+//                    : "";
+//            return !nextCategoryValue.isEmpty();
+//        }
+//        return false;
+//    }
 
     public int stateId(Cell stateCell) throws SQLException {
         String state = dataFormatter.formatCellValue(stateCell);
@@ -178,8 +173,7 @@ public class Get {
                 idCategory = createCategoryMain(categoriaCell, categoryPrincipal);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            throw e; // Rethrow the exception if needed
+            System.out.println("Erro na verificação de categoria");
         }
         return idCategory;
     }

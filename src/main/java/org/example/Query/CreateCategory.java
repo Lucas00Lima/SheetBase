@@ -2,22 +2,19 @@ package org.example.Query;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
 
-import java.net.ConnectException;
 import java.sql.*;
 public class CreateCategory {
-    private int idCategory = 0;
-    private DataFormatter dataFormatter = new DataFormatter();
+    final private DataFormatter dataFormatter = new DataFormatter();
     public int createCategory(Connection connection, Cell categoryCell, int father_id, int is_father) throws SQLException {
         String table = "category";
         Get get = new Get(connection);
         InsertQuery insert = new InsertQuery();
         String insertQueryCategory = insert.insert(table,connection);
         String nameValue = dataFormatter.formatCellValue(categoryCell);
-        idCategory = get.getLastInsertId("category") + 1;
+        int idCategory = get.getLastInsertId("category") + 1;
         PreparedStatement categoryStatement = connection.prepareStatement(insertQueryCategory);
         categoryStatement.setInt(1, idCategory); //Id
         categoryStatement.setString(2, nameValue); //Name
