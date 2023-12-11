@@ -6,6 +6,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataAcess {
+    public boolean createDatabase() {
+        String filePath;
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            JOptionPane.showMessageDialog(null, "Arquivo Selecionado" + filePath);
+        } else {
+            String error = JOptionPane.showInputDialog("Arquivo não selecionado");
+        }
+        return false;
+    }
     public Connection connectionDB() throws SQLException {
         String username = "root";
         String storedPassword = "@soma+";
