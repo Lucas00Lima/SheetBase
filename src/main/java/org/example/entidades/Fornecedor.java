@@ -14,7 +14,6 @@ public class Fornecedor {
    final private String cep;
    final private int state;
    final private int city;
-
     public Fornecedor(String id, String name, String aux_name, String email, String numDoc, String numDoc2, String tel, String phone, String street, String numberStreet, String cep, int state, int city) {
         this.id = id;
         this.name = name;
@@ -30,7 +29,6 @@ public class Fornecedor {
         this.state = state;
         this.city = city;
     }
-
     public String getId() {
         return id;
     }

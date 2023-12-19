@@ -11,7 +11,6 @@ import java.sql.SQLException;
 public class GeneratorUpdate {
     private final DataAcess dataAcess;
     private final String filePath;
-
     public GeneratorUpdate(DataAcess dataAcess, String filePath) {
         this.dataAcess = dataAcess;
         this.filePath = filePath;
@@ -41,7 +40,6 @@ public class GeneratorUpdate {
             Cell codeCell = row.getCell(0);
             Cell nameCell = row.getCell(2);
             Cell priceCell = row.getCell(4);
-            Cell typeCell = row.getCell(5);
             if ((codeCell == null || codeCell.getCellType() == CellType.BLANK)
                     && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) {
                 continue;

@@ -14,10 +14,8 @@ public class ServiceFactory implements TreatmentRows {
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);
-        
         String id = dataFormatter.formatCellValue(idCell);
         String name = dataFormatter.formatCellValue(nameCell);
-
         Service service = new Service(id,name);
         return service;
     }

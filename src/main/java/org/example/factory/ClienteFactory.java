@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class ClienteFactory implements TreatmentRows {
     LocalDate currentDate = LocalDate.now();
     public Client cliente(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+        Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);
@@ -34,7 +35,6 @@ public class ClienteFactory implements TreatmentRows {
         Cell nameContact2Cell = row.getCell(14);
         Cell celContact2Cell = row.getCell(15);
         Cell obsCell = row.getCell(16);
-        Get get = new Get(connection);
         String id = dataFormatter.formatCellValue(idCell);
         String name = dataFormatter.formatCellValue(nameCell);
         int type1 = treatmentVariable.cpfOrCnpj(numDocCell);

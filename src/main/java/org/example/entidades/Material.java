@@ -4,7 +4,6 @@ public class Material {
     final private double id;
     final private String name;
     final private String medida;
-
     public Material(double id, String name, String medida) {
         this.id = id;
         this.name = name;

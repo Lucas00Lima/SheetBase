@@ -11,11 +11,9 @@ public class MaterialFactory implements TreatmentRows {
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);
         Cell medidaCell = row.getCell(2);
-
         double id = idCell.getNumericCellValue();
         String name = dataFormatter.formatCellValue(nameCell);
         String medida = dataFormatter.formatCellValue(medidaCell);
-
         Material materials = new Material(id,name,medida);
         return materials;
     }

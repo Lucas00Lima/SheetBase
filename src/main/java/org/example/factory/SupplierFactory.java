@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 public class SupplierFactory implements TreatmentRows {
     public Fornecedor supplier(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+        Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);
@@ -27,9 +28,6 @@ public class SupplierFactory implements TreatmentRows {
         Cell cepCell = row.getCell(10);
         Cell stateCell = row.getCell(11);
         Cell cityCell = row.getCell(12);
-        
-        Get get = new Get(connection);
-        
         String id = dataFormatter.formatCellValue(idCell);
         String name = dataFormatter.formatCellValue(nameCell);
         String companyName = dataFormatter.formatCellValue(aux_nameCell);
@@ -43,7 +41,6 @@ public class SupplierFactory implements TreatmentRows {
         String cep = dataFormatter.formatCellValue(cepCell);
         int state = get.stateId(stateCell);
         int city = get.cityId(cityCell);
-        
         Fornecedor supplier = new Fornecedor(id,name,companyName,email,numDoc,numDoc2,tel,phone,street,number,cep,state,city);
         return supplier;
     }

@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 
 public class TreatmentVariable {
     private DataFormatter dataFormatter = new DataFormatter();
-
     public int variavelValue(String valor) {
         int priceValue;
         if (valor.equals("")) {
@@ -46,7 +45,6 @@ public class TreatmentVariable {
         }
         return priceValue;
     }
-
     public int tratmentIcms(Cell icmsCell) {
         String valor = dataFormatter.formatCellValue(icmsCell);
         int value;
@@ -57,7 +55,6 @@ public class TreatmentVariable {
         }
         return value;
     }
-
     public int tratmentOrigem(Cell valorCell) {
         String valor = dataFormatter.formatCellValue(valorCell);
         int valueZero;
@@ -68,7 +65,6 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
-
     public int tratmentZero(String valor) {
         int valueZero;
         if (valor.equals("")) {
@@ -78,7 +74,6 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
-
     public int cpfOrCnpj(Cell numDocCell) {
         String valor = dataFormatter.formatCellValue(numDocCell).replaceAll("\\D", "");
         if (valor.equals("")) {
@@ -91,7 +86,6 @@ public class TreatmentVariable {
             return 0;
         }
     }
-
     public int gender(Cell genderCell) {
         String valor = dataFormatter.formatCellValue(genderCell);
         if ( valor == null || valor.equals("")) {
@@ -105,30 +99,23 @@ public class TreatmentVariable {
             return 0;
         }
     }
-
     public Date dateBrithday(Cell valorCell) {
         try {
             String valor = dataFormatter.formatCellValue(valorCell);
-            if (valor == null || valor.isEmpty()) {
-                return null; // Retorna null se a célula estiver vazia
-            }
+            if (valor == null || valor.isEmpty()) { return null; }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             return (Date) formatter.parse(valor);
         } catch (ParseException e) {e.printStackTrace();}
         return null;
     }
-
     public String measureUnit(Cell measureUnitCell) {
         String measureUnit = dataFormatter.formatCellValue(measureUnitCell);
-        if (measureUnit.isEmpty()) {
-            measureUnit = "u";
-        }
+        if (measureUnit.isEmpty()) { measureUnit = "u"; }
         return measureUnit;
     }
     public String celTreatment(Cell celFone) {
         String fone = dataFormatter.formatCellValue(celFone);
         StringBuilder stringBuilder = new StringBuilder(fone);
-        
         if (fone.length() == 10) {
             // Inserir parênteses no início e fechá-los no índice 2 e 6
             stringBuilder.insert(0, "(");

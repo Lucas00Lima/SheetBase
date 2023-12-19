@@ -20,7 +20,6 @@ public class Client {
     final private String celContact2;
     final private String obs;
     final private Date register;
-
     public Client(String id, String name, String numDoc, int type1, String numDoc2, String companyName, String tel, int gender, String email, Date birthday, int state, int city, String street, String nameContact1, String celContact1, String nameContact2, String celContact2, String obs, Date register) {
         this.id = id;
         this.name = name;

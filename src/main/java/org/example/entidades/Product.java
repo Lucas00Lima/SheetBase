@@ -57,7 +57,6 @@ public class Product {
         this.balcony = balcony;
         this.status = status;
     }
-
     public String getInternalCode() {
         return internalCode;
     }

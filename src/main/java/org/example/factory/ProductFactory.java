@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class ProductFactory implements TreatmentRows {
 
     public Product produto(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+        Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
         Cell codeCell = row.getCell(0);
         Cell barcodeCell = row.getCell(1);
@@ -42,9 +43,6 @@ public class ProductFactory implements TreatmentRows {
         Cell cardCell = row.getCell(25);
         Cell balconyCell = row.getCell(26);
         Cell statusCell = row.getCell(27);
-
-        Get get = new Get(connection);
-
         int categoryId = get.numberCategory(categoryCell,categoryCellPrincipal);
         String internalCode = get.verifyInternalCode(codeCell, categoryId);
         String barcode = dataFormatter.formatCellValue(barcodeCell);
@@ -76,7 +74,6 @@ public class ProductFactory implements TreatmentRows {
         int card = treatmentVariable.tratmentOrigem(cardCell);
         int balcony = treatmentVariable.tratmentOrigem(balconyCell);
         int status = treatmentVariable.tratmentOrigem(statusCell);
-
         return new Product(internalCode, barcode, name, categoryId, description, price, type, type2, combo , cost,  ncm, cfop, cest, cst,
                 icms, piscod, pis, cofinscod, cofins, icmsRed, currentStock, measureUnit, delivery, hall_table, card, balcony, status);
     }

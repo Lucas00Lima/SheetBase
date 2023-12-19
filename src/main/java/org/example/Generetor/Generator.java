@@ -13,13 +13,11 @@ public class Generator {
     private final DataAcess dataAcess;
     private final String table;
     private final String filePath;
-
     public Generator(DataAcess dataAcess, String table, String filePath) {
         this.dataAcess = dataAcess;
         this.table = table;
         this.filePath = filePath;
     }
-
     public void generetor() throws SQLException, IOException {
         CreateProduct createProduct = new CreateProduct();
         FileInputStream fileInput = new FileInputStream(filePath);
@@ -32,24 +30,15 @@ public class Generator {
             case "product":
                 for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                     Row row = sheet.getRow(rowIndex);
-                    if (row == null) {
-                        continue;
-                    }
+                    if (row == null) { continue; }
                     if (isRowEmpty(row)) {
                         emptyRowCount++;
-                        if (emptyRowCount >= 3) {
-                            break;
-                        }
-                    } else {
-                        emptyRowCount = 0;
-                    }
+                        if (emptyRowCount >= 3) { break; }
+                    } else { emptyRowCount = 0; }
                     Cell codeCell = row.getCell(0);
                     Cell nameCell = row.getCell(2);
                     Cell priceCell = row.getCell(4);
-                    if ((codeCell == null || codeCell.getCellType() == CellType.BLANK)
-                            && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) {
-                        continue;
-                    }
+                    if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) { continue; }
                     if ((nameCell != null && nameCell.getCellType() != CellType.BLANK) || (priceCell != null && priceCell.getCellType() != CellType.BLANK)) {
                         createProduct.createProduct(connection, sheet, rowIndex);
                     }
@@ -62,27 +51,20 @@ public class Generator {
                     Row row = sheet.getRow(rowIndex);
                     if (isRowEmpty(row)) {
                         emptyRowCount++;
-                        if (emptyRowCount >= 3) {
-                            break;
-                        }
-                    } else {
-                        emptyRowCount = 0;
-                    }
+                        if (emptyRowCount >= 3) { break; }
+                    } else { emptyRowCount = 0; }
                     CreateClient createClient = new CreateClient();
                     createClient.createClient(connection, sheet, rowIndex);
                 }
                 System.out.println("Tudo Concluido no clientes");
+                break;
             case "service":
                 for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                     Row row = sheet.getRow(rowIndex);
                     if (isRowEmpty(row)) {
                         emptyRowCount++;
-                        if (emptyRowCount >= 3) {
-                            break;
-                        }
-                    } else {
-                        emptyRowCount = 0;
-                    }
+                        if (emptyRowCount >= 3) { break; }
+                    } else { emptyRowCount = 0; }
                     Cell codeCell = row.getCell(0);
                     if (codeCell == null || codeCell.getCellType() == CellType.BLANK) {
                         CreateService createService = new CreateService();
@@ -96,13 +78,8 @@ public class Generator {
                     Row row = sheet.getRow(rowIndex);
                     if (isRowEmpty(row)) {
                         emptyRowCount++;
-                        if (emptyRowCount >= 3) {
-                            break;
-                        }
-                    } else {
-                        emptyRowCount = 0;
-                    }
-
+                        if (emptyRowCount >= 3) { break; }
+                    } else { emptyRowCount = 0; }
                     CreateSupplier createSupplier = new CreateSupplier();
                     createSupplier.createService(connection, sheet, rowIndex);
                 }
@@ -111,17 +88,11 @@ public class Generator {
             case "material":
                 for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                     Row row = sheet.getRow(rowIndex);
-                    if (row == null) {
-                        continue;
-                    }
+                    if (row == null) { continue; }
                     if (isRowEmpty(row)) {
                         emptyRowCount++;
-                        if (emptyRowCount >= 3) {
-                            break;
-                        }
-                    } else {
-                        emptyRowCount = 0;
-                    }
+                        if (emptyRowCount >= 3) { break;}
+                    } else { emptyRowCount = 0; }
                     Cell codeCell = row.getCell(0);//Codigo
                     Cell nameCell = row.getCell(1);//name
                     if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell != null && nameCell.getCellType() != CellType.BLANK)) {
@@ -136,7 +107,6 @@ public class Generator {
         CreateExtra createExtra = new CreateExtra();
         createExtra.createExtra(connection);
     }
-
     private static boolean isRowEmpty(Row row) {
         if (row == null) {
             return true;
