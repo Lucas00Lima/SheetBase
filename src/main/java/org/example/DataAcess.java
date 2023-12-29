@@ -1,9 +1,9 @@
 package org.example;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.*;
 
 public class DataAcess {
     public Connection connectionDB() throws SQLException {
@@ -19,7 +19,6 @@ public class DataAcess {
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            JOptionPane.showMessageDialog(null, "Arquivo Selecionado" + filePath);
         }
         return filePath;
     }
