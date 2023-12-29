@@ -44,9 +44,8 @@
         </Button>
         <HBox GridPane.rowIndex="1">
             <VBox fx:id="vboxCheck">
-                <CheckBox fx:id="chekProduct" styleClass="check-box-custom" text="Importar Produtos"/>
-                <CheckBox fx:id="chekSupplier" styleClass="check-box-custom" text="Importar Fornecedor"/>
-                <CheckBox fx:id="chekMaterial" styleClass="check-box-custom" text="Importar Materia-Prima"/>
+                <CheckBox fx:id="checkProduct" styleClass="check-box-custom" text="Importar Produtos"/>
+                <CheckBox fx:id="checkSupplier" styleClass="check-box-custom" text="Importar Fornecedor"/>
             </VBox>
             <VBox>
                 <CheckBox fx:id="updateSheet" mnemonicParsing="false" styleClass="check-box-custom"
