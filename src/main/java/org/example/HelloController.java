@@ -1,20 +1,26 @@
 package org.example;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextFlow;
 import org.example.Generetor.Generator;
+import javafx.scene.text.Text;
 
 public class HelloController {
     public AnchorPane containerMaster;
     public GridPane gridPane;
     public Button buttonSearch;
     public VBox vboxCheck;
+    public ScrollPane scrollPane;
+    private String sheet;
     @FXML
     public CheckBox checkSupplier;
     @FXML
@@ -24,8 +30,7 @@ public class HelloController {
     @FXML
     private TextField inputLocal;
     @FXML
-    private TextArea texLog;
-    private String sheet;
+    private TextFlow texLog;
     @FXML
     private void initialize() {
         addSelectionListener(checkProduct);
@@ -59,8 +64,8 @@ public class HelloController {
     }
     private void executeLogicForCheckBox(String checkBoxName) {
         DataAcess dataAcess = new DataAcess();
-            System.out.println(sheet);
-            Generator generator = new Generator(dataAcess, checkBoxName, sheet);
+        System.out.println(sheet);
+        Generator generator = new Generator(dataAcess, checkBoxName, sheet);
         generator.generetor();
         LogTex.textInfo("Função associada ao CheckBox '" + checkBoxName + "' executada!");
     }
@@ -72,12 +77,13 @@ public class HelloController {
         System.out.println("Botão de busca clicado!");
     }
     public void appendLog(String message, boolean isError) {
-        String formattedMessage = message + "\n";
-        if (isError) {
-            texLog.setStyle("-fx-text-fill: red;");
-        } else {
-            texLog.setStyle("-fx-text-fill: black;");
-        }
-        texLog.appendText(formattedMessage);
+        Text logText = new Text(message + "\n");
+        if (isError) { logText.setFill(Color.RED); }
+        texLog.getChildren().add(logText);
+        texLog.getChildren().add(new Text("\n"));
+        Platform.runLater(() -> {
+            // Rola para a última linha
+            scrollPane.setVvalue(1.0);
+        });
     }
 }
