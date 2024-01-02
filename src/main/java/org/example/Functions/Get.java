@@ -18,7 +18,6 @@ public class Get {
     public Get(Connection connection) { this.connection = connection; }
     final private DataFormatter dataFormatter = new DataFormatter();
     final private static Map<Integer, Integer> lastInternalCodeMap = new HashMap<>();
-    final private LogTex logTex = new LogTex();
     public int getNextInternalCode(int categoryId) {
         int lastInternalCode = lastInternalCodeMap.getOrDefault(categoryId, 0);
         int internalCode = categoryId * 100 + lastInternalCode;
