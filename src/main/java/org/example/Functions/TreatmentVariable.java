@@ -6,12 +6,13 @@ import java.text.SimpleDateFormat;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.example.LogTex;
 
 public class TreatmentVariable {
-    private DataFormatter dataFormatter = new DataFormatter();
+    private final DataFormatter dataFormatter = new DataFormatter();
     public int variavelValue(String valor) {
         int priceValue;
-        if (valor.equals("")) {
+        if (valor.isEmpty()) {
             priceValue = 0;
         } else if (valor.contains(",") && valor.contains(".")) {
             valor = valor.replace(".", "");
@@ -48,7 +49,7 @@ public class TreatmentVariable {
     public int tratmentIcms(Cell icmsCell) {
         String valor = dataFormatter.formatCellValue(icmsCell);
         int value;
-        if (valor.equals("")) {
+        if (valor.isEmpty()) {
             value = 0;
         } else {
             value = Integer.parseInt(valor) * 1000;
@@ -58,7 +59,7 @@ public class TreatmentVariable {
     public int tratmentOrigem(Cell valorCell) {
         String valor = dataFormatter.formatCellValue(valorCell);
         int valueZero;
-        if (valor.equals("")) {
+        if (valor.isEmpty()) {
             valueZero = 1;
         } else {
             valueZero = Integer.parseInt(valor);
@@ -67,7 +68,7 @@ public class TreatmentVariable {
     }
     public int tratmentZero(String valor) {
         int valueZero;
-        if (valor.equals("")) {
+        if (valor.isEmpty()) {
             valueZero = 0;
         } else {
             valueZero = Integer.parseInt(valor);
@@ -76,7 +77,7 @@ public class TreatmentVariable {
     }
     public int cpfOrCnpj(Cell numDocCell) {
         String valor = dataFormatter.formatCellValue(numDocCell).replaceAll("\\D", "");
-        if (valor.equals("")) {
+        if (valor.isEmpty()) {
             return 1;
         } else if (valor.length() >= 14) {
             return 2;
@@ -88,8 +89,8 @@ public class TreatmentVariable {
     }
     public int gender(Cell genderCell) {
         String valor = dataFormatter.formatCellValue(genderCell);
-        if ( valor == null || valor.equals("")) { return 0; }
-        if (valor.contains("Masculino") || valor.contains("M") || valor.contains("Masculino")) {
+        if ( valor == null || valor.isEmpty()) { return 0; }
+        if (valor.contains("Masculino") || valor.contains("M") || valor.contains("masculino")) {
             return 1;
         } else if (valor.contains("Feminino") || valor.contains("F") || valor.contains("feminino")) {
             return 2;
@@ -103,7 +104,9 @@ public class TreatmentVariable {
             if (valor == null || valor.isEmpty()) { return null; }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             return (Date) formatter.parse(valor);
-        } catch (ParseException e) {e.printStackTrace();}
+        } catch (ParseException e) {
+            LogTex.textError("Erro DATA");
+        }
         return null;
     }
     public String measureUnit(Cell measureUnitCell) {

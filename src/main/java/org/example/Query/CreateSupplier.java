@@ -2,9 +2,7 @@ package org.example.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
 import org.example.LogTex;

@@ -5,8 +5,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.example.LogTex;
 import org.example.Query.CreateCategory;
-import org.example.TreatmentRows;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +28,7 @@ public class Get {
     public boolean consultExist(String code) {
         try {
             String query = "SELECT internal_code FROM product WHERE internal_code = ?";
-            PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, code);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -63,7 +61,7 @@ public class Get {
         try {
             String query = "SELECT MAX(id) AS last_id FROM ";
             int totalId = -1;
-            PreparedStatement queryInsertId = null;
+            PreparedStatement queryInsertId;
             queryInsertId = connection.prepareStatement(query + table);
             ResultSet resultSet = queryInsertId.executeQuery();
             if (resultSet.next()) {
@@ -79,7 +77,7 @@ public class Get {
         try {
             int lastInsertedCategoryId = 0;
             String categoryIdQuery = "SELECT MAX(id) AS lastCategoryId FROM category";
-            Statement categoryIdStatement = null;
+            Statement categoryIdStatement;
             categoryIdStatement = connection.createStatement();
             ResultSet categoryIdResult = categoryIdStatement.executeQuery(categoryIdQuery);
             if (categoryIdResult.next()) {
@@ -99,7 +97,7 @@ public class Get {
                 return id;
             }
             String sqlState = "select id from state where aux_name = '" + state + "' OR name = '" + state + "'";
-            Statement stateId = null;
+            Statement stateId;
             stateId = connection.createStatement();
             ResultSet idResult = stateId.executeQuery(sqlState);
             if (idResult.next()) {
@@ -121,7 +119,7 @@ public class Get {
                 return id;
             }
             String sqlCity = "select id from city where name = '" + city + "'";
-            Statement cityId = null;
+            Statement cityId;
             cityId = connection.createStatement();
             ResultSet idResult = cityId.executeQuery(sqlCity);
             if (idResult.next()) {
@@ -139,7 +137,7 @@ public class Get {
         try {
             List<String> idList = new ArrayList<>();
             String productCombo = "SELECT id FROM product WHERE type2 = 6";
-            Statement statement = null;
+            Statement statement;
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(productCombo);
             while (resultSet.next()) {

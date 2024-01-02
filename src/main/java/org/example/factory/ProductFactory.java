@@ -6,9 +6,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.example.Functions.Get;
 import org.example.TreatmentRows;
 import org.example.entidades.Product;
-
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class ProductFactory implements TreatmentRows {
 

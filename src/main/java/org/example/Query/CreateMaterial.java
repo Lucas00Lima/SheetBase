@@ -1,19 +1,16 @@
 package org.example.Query;
 
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
 import org.example.LogTex;
 import org.example.entidades.Material;
 import org.example.factory.MaterialFactory;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class CreateMaterial {
-    private InsertQuery insertQuery = new InsertQuery();
+    private final InsertQuery insertQuery = new InsertQuery();
     public void createMaterial(Connection connection, Sheet sheet, int rowIndex) {
         try {
             Get get = new Get(connection);

@@ -1,12 +1,10 @@
 package org.example.Query;
 
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.InsertQuery;
 import org.example.LogTex;
 import org.example.factory.ProductFactory;
 import org.example.entidades.Product;
-
 import java.sql.*;
 
 public class CreateProduct {

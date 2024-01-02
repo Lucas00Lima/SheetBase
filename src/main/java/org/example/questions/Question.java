@@ -4,9 +4,7 @@ import org.example.DataAcess;
 import org.example.Functions.Update;
 import org.example.Generetor.Generator;
 import org.example.LogTex;
-
 import javax.swing.*;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 

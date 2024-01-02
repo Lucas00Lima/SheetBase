@@ -2,9 +2,7 @@ package org.example.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
 import org.example.LogTex;
@@ -16,7 +14,7 @@ public class CreateService {
         try {
             String table = "service";
             ServiceFactory serviceFactory = new ServiceFactory();
-            Service service = serviceFactory.servic(sheet, rowIndex, connection);
+            Service service = serviceFactory.servic(sheet, rowIndex);
             InsertQuery insertQuery = new InsertQuery();
             String insertQueryService = insertQuery.insert(table, connection);
             Get get = new Get(connection);

@@ -2,8 +2,6 @@ package org.example;
 import javafx.application.Platform;
 public class LogTex {
     private static HelloController frontendController;
-    public LogTex(String s) {
-    }
     public static void setFrontendController(HelloController controller) {
         LogTex.frontendController = controller;
     }
