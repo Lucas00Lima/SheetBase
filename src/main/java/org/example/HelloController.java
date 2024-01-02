@@ -9,8 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.example.Generetor.Generator;
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class HelloController {
     public AnchorPane containerMaster;
@@ -48,11 +46,13 @@ public class HelloController {
         });
     }
     @FXML
-    protected void onExecuteButtonClick() throws SQLException, IOException {
+    protected void onExecuteButtonClick() {
         if (checkProduct.isSelected()) {
             executeLogicForCheckBox("product");
+            LogTex.textInfo("Selecionado a importação de produtos");
         } else if (checkSupplier.isSelected()) {
             executeLogicForCheckBox("supplier");
+            LogTex.textInfo("Selecionado a importação de Fornecedor");
         } else {
             LogTex.textError("Nenhum CheckBox selecionado");
         }
@@ -61,11 +61,7 @@ public class HelloController {
         DataAcess dataAcess = new DataAcess();
             System.out.println(sheet);
             Generator generator = new Generator(dataAcess, checkBoxName, sheet);
-        try {
-            generator.generetor();
-        } catch (SQLException | IOException e) {
-            LogTex.textError("Erro no checkBox");
-        }
+        generator.generetor();
         System.out.println("Função associada ao CheckBox '" + checkBoxName + "' executada!");
     }
     @FXML
@@ -75,7 +71,13 @@ public class HelloController {
         inputLocal.setText(sheet);
         System.out.println("Botão de busca clicado!");
     }
-    public void appendLog(String message) {
-        texLog.appendText(message + "\n");
+    public void appendLog(String message, boolean isError) {
+        String formattedMessage = message + "\n";
+        if (isError) {
+            texLog.setStyle("-fx-text-fill: red;");
+        } else {
+            texLog.setStyle("-fx-text-fill: black;");
+        }
+        texLog.appendText(formattedMessage);
     }
 }
