@@ -22,6 +22,11 @@ public class Generator {
     public void generetor() {
         try {
             CreateProduct createProduct = new CreateProduct();
+            if (filePath == null ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "FALTA PLANILHA", ButtonType.OK);
+                alert.initModality(Modality.APPLICATION_MODAL);
+                alert.showAndWait();
+            }
             FileInputStream fileInput = new FileInputStream(filePath);
             Workbook workbook = WorkbookFactory.create(fileInput);
             Sheet sheet = workbook.getSheetAt(0);
