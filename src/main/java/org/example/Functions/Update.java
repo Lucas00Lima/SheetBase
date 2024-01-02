@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Update {
-    public boolean update(Connection connection) {
+    public void update(Connection connection) {
         try {
             Get get = new Get(connection);
             String waiterdevices = JOptionPane.showInputDialog("Quantos dispositivos o cliente irá usar ?");
@@ -33,11 +33,9 @@ public class Update {
             System.out.println("Inserindo " + waiterdevices + " Waiter_Devices.......");
             addStatement.executeBatch();
             addStatement.execute();
-            return true;
         } catch (SQLException e) {
-            LogTex.textError("Erro na verificação de categoria");
+            LogTex.textError("Erro na verificação de Update");
             LogTex.textError(String.valueOf(e));
         }
-        return false;
     }
 }

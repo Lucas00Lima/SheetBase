@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import org.apache.poi.ss.usermodel.*;
+import org.example.Functions.Update;
 import org.example.LogTex;
 import org.example.Query.*;
 import org.example.DataAcess;
@@ -141,6 +142,8 @@ public class Generator {
                 }
                 CreateExtra createExtra = new CreateExtra();
                 createExtra.createExtra(connection);
+                Update update = new Update();
+                update.update(connection);
             }
         } catch (SQLException | IOException e) {
             LogTex.textError("Erro no generator");
