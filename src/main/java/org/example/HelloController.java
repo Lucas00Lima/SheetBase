@@ -32,6 +32,7 @@ public class HelloController {
     private void initialize() {
         addSelectionListener(checkProduct);
         addSelectionListener(checkSupplier);
+        LogTex.setFrontendController(this);
     }
     private void addSelectionListener(CheckBox checkBox) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -53,14 +54,18 @@ public class HelloController {
         } else if (checkSupplier.isSelected()) {
             executeLogicForCheckBox("supplier");
         } else {
-            System.out.println("Nenhum CheckBox selecionado.");
+            LogTex.textError("Nenhum CheckBox selecionado");
         }
     }
-    private void executeLogicForCheckBox(String checkBoxName) throws SQLException, IOException {
+    private void executeLogicForCheckBox(String checkBoxName) {
         DataAcess dataAcess = new DataAcess();
             System.out.println(sheet);
             Generator generator = new Generator(dataAcess, checkBoxName, sheet);
+        try {
             generator.generetor();
+        } catch (SQLException | IOException e) {
+            LogTex.textError("Erro no checkBox");
+        }
         System.out.println("Função associada ao CheckBox '" + checkBoxName + "' executada!");
     }
     @FXML
@@ -69,5 +74,8 @@ public class HelloController {
         sheet = dataAcess.accessSheet();
         inputLocal.setText(sheet);
         System.out.println("Botão de busca clicado!");
+    }
+    public void appendLog(String message) {
+        texLog.appendText(message + "\n");
     }
 }
