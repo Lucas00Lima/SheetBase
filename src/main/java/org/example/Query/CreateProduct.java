@@ -1,18 +1,23 @@
 package org.example.Query;
+
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.DataAcess;
 import org.example.Functions.InsertQuery;
+import org.example.LogTex;
 import org.example.factory.ProductFactory;
 import org.example.entidades.Product;
+
 import java.sql.*;
 
 public class CreateProduct {
     private final InsertQuery insertQuery = new InsertQuery();
-    public void createProduct(Connection connection, Sheet sheet, int rowIndex) throws SQLException {
+
+    public void createProduct(Connection connection, Sheet sheet, int rowIndex) {
+        try {
             String table = "product";
             ProductFactory produto = new ProductFactory();
             Product product = produto.produto(sheet, rowIndex, connection);
-            String insertQueryProduct = insertQuery.insert(table,connection);
+            String insertQueryProduct = insertQuery.insert(table, connection);
             PreparedStatement preparedStatement = connection.prepareStatement(insertQueryProduct);
             preparedStatement.setString(1, product.getName());//nameValue);
             preparedStatement.setString(2, product.getDescription());//descriptionValue);
@@ -64,10 +69,12 @@ public class CreateProduct {
             preparedStatement.setInt(48, 0);//combo_price);
             preparedStatement.setInt(49, 0);//production_group2);
             preparedStatement.setInt(50, 1000);//pack_amount);
-//            preparedStatement.setInt(51, 0);//icms_reduction);
             preparedStatement.setInt(51, 0);//produced);
-//            preparedStatement.setInt(52, 0);//windows_notes);
             preparedStatement.setNull(52, Types.DATE);//deleted_at);
             preparedStatement.execute();
+        } catch (Exception e) {
+            LogTex.textError("Erro na criação de Produto");
+            LogTex.textError(String.valueOf(e));
+        }
     }
 }

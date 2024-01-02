@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class SupplierFactory implements TreatmentRows {
-    public Fornecedor supplier(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+    public Fornecedor supplier(Sheet sheet, int rowIndex, Connection connection) {
         Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);

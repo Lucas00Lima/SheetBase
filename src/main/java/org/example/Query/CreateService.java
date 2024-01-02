@@ -2,10 +2,12 @@ package org.example.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
+import org.example.LogTex;
 import org.example.factory.ServiceFactory;
 import org.example.entidades.Service;
 
@@ -16,7 +18,7 @@ public class CreateService {
             ServiceFactory serviceFactory = new ServiceFactory();
             Service service = serviceFactory.servic(sheet, rowIndex, connection);
             InsertQuery insertQuery = new InsertQuery();
-            String insertQueryService = insertQuery.insert(table,connection);
+            String insertQueryService = insertQuery.insert(table, connection);
             Get get = new Get(connection);
             int id = get.getLastInsertId(table) + 1;
             PreparedStatement preparedStatement = connection.prepareStatement(insertQueryService);
@@ -63,7 +65,8 @@ public class CreateService {
             preparedStatement.setInt(41, 1);
             preparedStatement.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            LogTex.textError("Erro na criação de Serviços");
+            LogTex.textError(String.valueOf(e));
         }
     }
 }

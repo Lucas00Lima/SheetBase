@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class ProductFactory implements TreatmentRows {
 
-    public Product produto(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+    public Product produto(Sheet sheet, int rowIndex, Connection connection) {
         Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
         Cell codeCell = row.getCell(0);

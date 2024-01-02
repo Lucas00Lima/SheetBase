@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
+import org.example.LogTex;
 import org.example.entidades.Material;
 import org.example.factory.MaterialFactory;
 
@@ -55,7 +56,8 @@ public class CreateMaterial {
             ps.execute();
             System.out.println(insertQueryMaterial);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogTex.textError("Erro na criação de Material");
+            LogTex.textError(String.valueOf(e));
         }
     }
 }

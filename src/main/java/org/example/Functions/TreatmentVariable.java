@@ -88,9 +88,7 @@ public class TreatmentVariable {
     }
     public int gender(Cell genderCell) {
         String valor = dataFormatter.formatCellValue(genderCell);
-        if ( valor == null || valor.equals("")) {
-            return 0;
-        }
+        if ( valor == null || valor.equals("")) { return 0; }
         if (valor.contains("Masculino") || valor.contains("M") || valor.contains("Masculino")) {
             return 1;
         } else if (valor.contains("Feminino") || valor.contains("F") || valor.contains("feminino")) {

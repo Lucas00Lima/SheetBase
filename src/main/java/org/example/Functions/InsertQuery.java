@@ -1,5 +1,7 @@
 package org.example.Functions;
 
+import org.example.LogTex;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -68,7 +70,8 @@ public class InsertQuery {
                 cacheInsert = insertQuery.toString();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogTex.textError("Erro no insertQuery");
+            LogTex.textError(String.valueOf(e));
         }
         return cacheInsert;
     }

@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ServiceFactory implements TreatmentRows {
-    public Service servic(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+    public Service servic(Sheet sheet, int rowIndex, Connection connection) {
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);

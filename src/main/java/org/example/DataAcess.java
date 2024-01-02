@@ -14,7 +14,7 @@ public class DataAcess {
             String url = "jdbc:mysql://localhost:3306/db" + bancoCliente;
             return DriverManager.getConnection(url, username, storedPassword);
         } catch (SQLException e) {
-            LogTex.textError("Erro na seleção de BANCO");
+            LogTex.textError("Erro na inclusão do BANCO");
             return null;
         }
     }

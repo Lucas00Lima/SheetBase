@@ -14,18 +14,15 @@ public class Generator {
     private final DataAcess dataAcess;
     private final String table;
     private final String filePath;
-
     public Generator(DataAcess dataAcess, String table, String filePath) {
         this.dataAcess = dataAcess;
         this.table = table;
         this.filePath = filePath;
     }
-
     public void generetor() {
         try {
             CreateProduct createProduct = new CreateProduct();
-            FileInputStream fileInput;
-            fileInput = new FileInputStream(filePath);
+            FileInputStream fileInput = new FileInputStream(filePath);
             Workbook workbook = WorkbookFactory.create(fileInput);
             Sheet sheet = workbook.getSheetAt(0);
             Connection connection = dataAcess.connectionDB();
@@ -35,29 +32,21 @@ public class Generator {
                 case "product":
                     for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                         Row row = sheet.getRow(rowIndex);
-                        if (row == null) {
-                            continue;
-                        }
+                        if (row == null) { continue; }
                         if (isRowEmpty(row)) {
                             emptyRowCount++;
-                            if (emptyRowCount >= 3) {
-                                break;
-                            }
-                        } else {
-                            emptyRowCount = 0;
-                        }
+                            if (emptyRowCount >= 3) { break; }
+                        } else { emptyRowCount = 0; }
                         Cell codeCell = row.getCell(0);
                         Cell nameCell = row.getCell(2);
                         Cell priceCell = row.getCell(4);
-                        if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) {
-                            continue;
-                        }
+                        if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) { continue; }
                         if ((nameCell != null && nameCell.getCellType() != CellType.BLANK) || (priceCell != null && priceCell.getCellType() != CellType.BLANK)) {
                             createProduct.createProduct(connection, sheet, rowIndex);
                         }
                     }
-                    System.out.println("Import de produtos e categoria");
-                    System.out.println("Tudo Concluido");
+                    LogTex.textInfo("Import de produtos e categoria");
+                    LogTex.textInfo("Tudo Concluido");
                     break;
                 case "client":
                     for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
@@ -73,7 +62,7 @@ public class Generator {
                         CreateClient createClient = new CreateClient();
                         createClient.createClient(connection, sheet, rowIndex);
                     }
-                    System.out.println("Tudo Concluido no clientes");
+                    LogTex.textInfo("Tudo Concluido no clientes");
                     break;
                 case "service":
                     for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
@@ -92,7 +81,7 @@ public class Generator {
                             createService.createService(connection, sheet, rowIndex);
                         }
                     }
-                    System.out.println("Service Concluido");
+                    LogTex.textInfo("Service Concluido");
                     break;
                 case "supplier":
                     for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
@@ -106,9 +95,9 @@ public class Generator {
                             emptyRowCount = 0;
                         }
                         CreateSupplier createSupplier = new CreateSupplier();
-                        createSupplier.createService(connection, sheet, rowIndex);
+                        createSupplier.createSupplier(connection, sheet, rowIndex);
                     }
-                    System.out.println("Tudo Concluido");
+                    LogTex.textInfo("Tudo Concluido");
                     break;
                 case "material":
                     for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
@@ -130,7 +119,7 @@ public class Generator {
                             CreateMaterial createMaterial = new CreateMaterial();
                             createMaterial.createMaterial(connection, sheet, rowIndex);
                         }
-                        System.out.println("Tudo Concluido");
+                        LogTex.textInfo("Tudo Concluido");
                     }
                     break;
                 default:

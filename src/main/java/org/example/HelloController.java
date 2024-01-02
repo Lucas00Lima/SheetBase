@@ -62,7 +62,7 @@ public class HelloController {
             System.out.println(sheet);
             Generator generator = new Generator(dataAcess, checkBoxName, sheet);
         generator.generetor();
-        System.out.println("Função associada ao CheckBox '" + checkBoxName + "' executada!");
+        LogTex.textInfo("Função associada ao CheckBox '" + checkBoxName + "' executada!");
     }
     @FXML
     protected void onSearchButtonClick() {
