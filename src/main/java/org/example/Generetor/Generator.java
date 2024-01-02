@@ -1,10 +1,12 @@
 package org.example.Generetor;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import org.apache.poi.ss.usermodel.*;
 import org.example.LogTex;
 import org.example.Query.*;
 import org.example.DataAcess;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,111 +28,120 @@ public class Generator {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "FALTA PLANILHA", ButtonType.OK);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.showAndWait();
-            }
-            FileInputStream fileInput = new FileInputStream(filePath);
-            Workbook workbook = WorkbookFactory.create(fileInput);
-            Sheet sheet = workbook.getSheetAt(0);
-            Connection connection = dataAcess.connectionDB();
-            int rowIndex;
-            int emptyRowCount = 0;
-            switch (table) {
-                case "product":
-                    for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                        Row row = sheet.getRow(rowIndex);
-                        if (row == null) { continue; }
-                        if (isRowEmpty(row)) {
-                            emptyRowCount++;
-                            if (emptyRowCount >= 3) { break; }
-                        } else { emptyRowCount = 0; }
-                        Cell codeCell = row.getCell(0);
-                        Cell nameCell = row.getCell(2);
-                        Cell priceCell = row.getCell(4);
-                        if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) { continue; }
-                        if ((nameCell != null && nameCell.getCellType() != CellType.BLANK) || (priceCell != null && priceCell.getCellType() != CellType.BLANK)) {
-                            createProduct.createProduct(connection, sheet, rowIndex);
-                        }
-                    }
-                    LogTex.textInfo("Import de produtos e categoria");
-                    LogTex.textInfo("Tudo Concluido");
-                    break;
-                case "client":
-                    for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                        Row row = sheet.getRow(rowIndex);
-                        if (isRowEmpty(row)) {
-                            emptyRowCount++;
-                            if (emptyRowCount >= 3) {
-                                break;
+            } else {
+                FileInputStream fileInput = new FileInputStream(filePath);
+                Workbook workbook = WorkbookFactory.create(fileInput);
+                Sheet sheet = workbook.getSheetAt(0);
+                Connection connection = dataAcess.connectionDB();
+                int rowIndex;
+                int emptyRowCount = 0;
+                switch (table) {
+                    case "product":
+                        for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                            Row row = sheet.getRow(rowIndex);
+                            if (row == null) {
+                                continue;
                             }
-                        } else {
-                            emptyRowCount = 0;
-                        }
-                        CreateClient createClient = new CreateClient();
-                        createClient.createClient(connection, sheet, rowIndex);
-                    }
-                    LogTex.textInfo("Tudo Concluido no clientes");
-                    break;
-                case "service":
-                    for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                        Row row = sheet.getRow(rowIndex);
-                        if (isRowEmpty(row)) {
-                            emptyRowCount++;
-                            if (emptyRowCount >= 3) {
-                                break;
+                            if (isRowEmpty(row)) {
+                                emptyRowCount++;
+                                if (emptyRowCount >= 3) {
+                                    break;
+                                }
+                            } else {
+                                emptyRowCount = 0;
                             }
-                        } else {
-                            emptyRowCount = 0;
-                        }
-                        Cell codeCell = row.getCell(0);
-                        if (codeCell == null || codeCell.getCellType() == CellType.BLANK) {
-                            CreateService createService = new CreateService();
-                            createService.createService(connection, sheet, rowIndex);
-                        }
-                    }
-                    LogTex.textInfo("Service Concluido");
-                    break;
-                case "supplier":
-                    for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                        Row row = sheet.getRow(rowIndex);
-                        if (isRowEmpty(row)) {
-                            emptyRowCount++;
-                            if (emptyRowCount >= 3) {
-                                break;
+                            Cell codeCell = row.getCell(0);
+                            Cell nameCell = row.getCell(2);
+                            Cell priceCell = row.getCell(4);
+                            if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell == null || nameCell.getCellType() == CellType.BLANK)) {
+                                continue;
                             }
-                        } else {
-                            emptyRowCount = 0;
-                        }
-                        CreateSupplier createSupplier = new CreateSupplier();
-                        createSupplier.createSupplier(connection, sheet, rowIndex);
-                    }
-                    LogTex.textInfo("Tudo Concluido");
-                    break;
-                case "material":
-                    for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                        Row row = sheet.getRow(rowIndex);
-                        if (row == null) {
-                            continue;
-                        }
-                        if (isRowEmpty(row)) {
-                            emptyRowCount++;
-                            if (emptyRowCount >= 3) {
-                                break;
+                            if ((nameCell != null && nameCell.getCellType() != CellType.BLANK) || (priceCell != null && priceCell.getCellType() != CellType.BLANK)) {
+                                createProduct.createProduct(connection, sheet, rowIndex);
                             }
-                        } else {
-                            emptyRowCount = 0;
                         }
-                        Cell codeCell = row.getCell(0);//Codigo
-                        Cell nameCell = row.getCell(1);//name
-                        if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell != null && nameCell.getCellType() != CellType.BLANK)) {
-                            CreateMaterial createMaterial = new CreateMaterial();
-                            createMaterial.createMaterial(connection, sheet, rowIndex);
+                        LogTex.textInfo("Import de produtos e categoria");
+                        LogTex.textInfo("Tudo Concluido");
+                        break;
+                    case "client":
+                        for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                            Row row = sheet.getRow(rowIndex);
+                            if (isRowEmpty(row)) {
+                                emptyRowCount++;
+                                if (emptyRowCount >= 3) {
+                                    break;
+                                }
+                            } else {
+                                emptyRowCount = 0;
+                            }
+                            CreateClient createClient = new CreateClient();
+                            createClient.createClient(connection, sheet, rowIndex);
+                        }
+                        LogTex.textInfo("Tudo Concluido no clientes");
+                        break;
+                    case "service":
+                        for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                            Row row = sheet.getRow(rowIndex);
+                            if (isRowEmpty(row)) {
+                                emptyRowCount++;
+                                if (emptyRowCount >= 3) {
+                                    break;
+                                }
+                            } else {
+                                emptyRowCount = 0;
+                            }
+                            Cell codeCell = row.getCell(0);
+                            if (codeCell == null || codeCell.getCellType() == CellType.BLANK) {
+                                CreateService createService = new CreateService();
+                                createService.createService(connection, sheet, rowIndex);
+                            }
+                        }
+                        LogTex.textInfo("Service Concluido");
+                        break;
+                    case "supplier":
+                        for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                            Row row = sheet.getRow(rowIndex);
+                            if (isRowEmpty(row)) {
+                                emptyRowCount++;
+                                if (emptyRowCount >= 3) {
+                                    break;
+                                }
+                            } else {
+                                emptyRowCount = 0;
+                            }
+                            CreateSupplier createSupplier = new CreateSupplier();
+                            createSupplier.createSupplier(connection, sheet, rowIndex);
                         }
                         LogTex.textInfo("Tudo Concluido");
-                    }
-                    break;
-                default:
+                        break;
+                    case "material":
+                        for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                            Row row = sheet.getRow(rowIndex);
+                            if (row == null) {
+                                continue;
+                            }
+                            if (isRowEmpty(row)) {
+                                emptyRowCount++;
+                                if (emptyRowCount >= 3) {
+                                    break;
+                                }
+                            } else {
+                                emptyRowCount = 0;
+                            }
+                            Cell codeCell = row.getCell(0);//Codigo
+                            Cell nameCell = row.getCell(1);//name
+                            if ((codeCell == null || codeCell.getCellType() == CellType.BLANK) && (nameCell != null && nameCell.getCellType() != CellType.BLANK)) {
+                                CreateMaterial createMaterial = new CreateMaterial();
+                                createMaterial.createMaterial(connection, sheet, rowIndex);
+                            }
+                            LogTex.textInfo("Tudo Concluido");
+                        }
+                        break;
+                    default:
+                }
+                CreateExtra createExtra = new CreateExtra();
+                createExtra.createExtra(connection);
             }
-            CreateExtra createExtra = new CreateExtra();
-            createExtra.createExtra(connection);
         } catch (SQLException | IOException e) {
             LogTex.textError("Erro no generator");
         }

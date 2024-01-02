@@ -6,9 +6,7 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.example.LogTex;
 import org.example.Query.CreateCategory;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Get {
@@ -132,32 +130,6 @@ public class Get {
             LogTex.textError(String.valueOf(e));
             return -1;
         }
-    }
-    public List<String> namesCombo() {
-        try {
-            List<String> idList = new ArrayList<>();
-            String productCombo = "SELECT id FROM product WHERE type2 = 6";
-            Statement statement;
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(productCombo);
-            while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                idList.add(id);
-            }
-            return idList;
-        } catch (SQLException e) {
-            LogTex.textError(String.valueOf(e));
-            return null;
-        }
-    }
-    public boolean isCombo(String idProduct) {
-        List<String> idList = namesCombo();
-        for (String id : idList) {
-            if (idProduct.contains(id)) {
-                return true;
-            }
-        }
-        return false;
     }
     public int numberCategory(Cell categoriaCell, Cell categoryPrincipal) {
         int idCategory = 0;

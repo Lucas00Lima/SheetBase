@@ -54,10 +54,8 @@ public class HelloController {
     protected void onExecuteButtonClick() {
         if (checkProduct.isSelected()) {
             executeLogicForCheckBox("product");
-            LogTex.textInfo("Selecionado a importação de produtos");
         } else if (checkSupplier.isSelected()) {
             executeLogicForCheckBox("supplier");
-            LogTex.textInfo("Selecionado a importação de Fornecedor");
         } else {
             LogTex.textError("Nenhum CheckBox selecionado");
         }
@@ -67,14 +65,12 @@ public class HelloController {
         System.out.println(sheet);
         Generator generator = new Generator(dataAcess, checkBoxName, sheet);
         generator.generetor();
-        LogTex.textInfo("Função associada ao CheckBox '" + checkBoxName + "' executada!");
     }
     @FXML
     protected void onSearchButtonClick() {
         DataAcess dataAcess = new DataAcess();
         sheet = dataAcess.accessSheet();
         inputLocal.setText(sheet);
-        System.out.println("Botão de busca clicado!");
     }
     public void appendLog(String message, boolean isError) {
         Text logText = new Text(message + "\n");

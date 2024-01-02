@@ -21,8 +21,7 @@ public class Update {
             int idClient = get.getLastInsertId("client") + 1;
             int idStreet = get.getLastInsertId("street") + 1;
             int idNeighborhood = get.getLastInsertId("neighborhood") + 1;
-            PreparedStatement addStatement;
-            addStatement = connection.prepareStatement(update + "next_id SET product_id = " + idProduct);
+            PreparedStatement addStatement = connection.prepareStatement(update + "next_id SET product_id = " + idProduct);
             addStatement.addBatch(update + "next_id SET client_id = " + idClient);
             addStatement.addBatch(update + "next_id SET category_id = " + idCategory);
             addStatement.addBatch(update + "next_id SET material_id = " + idMaterial);
