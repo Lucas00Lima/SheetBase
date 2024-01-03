@@ -54,7 +54,6 @@ public class ClienteFactory implements TreatmentRows {
         String celContact2 = dataFormatter.formatCellValue(celContact2Cell);
         String obs = dataFormatter.formatCellValue(obsCell);
         Date register = java.sql.Date.valueOf(currentDate);
-        Client client = new Client(id,name,numDoc,type1,numDoc2,companyName,tel,gender,email,birthday,state,city,street,nameContact1,celContact1,nameContact2,celContact2,obs,register);
-        return client;
+        return new Client(id,name,numDoc,type1,numDoc2,companyName,tel,gender,email,birthday,state,city,street,nameContact1,celContact1,nameContact2,celContact2,obs,register);
     }
 }
