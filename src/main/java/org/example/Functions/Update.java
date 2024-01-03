@@ -1,7 +1,6 @@
 package org.example.Functions;
 
 import org.example.LogTex;
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ public class Update {
     public void update(Connection connection) {
         try {
             Get get = new Get(connection);
-            String waiterdevices = JOptionPane.showInputDialog("Quantos dispositivos o cliente irá usar ?");
+            int waiterdevices = Integer.parseInt(JOptionPane.showInputDialog("Quantos dispositivos o cliente irá usar ?")) + 2;
             String update = "UPDATE ";
             int idProduct = get.getLastInsertId("product") + 1;
             int idCategory = get.getLastInsertId("category") + 1;
@@ -30,11 +29,12 @@ public class Update {
             addStatement.addBatch(update + "next_id SET street_id = " + idStreet);
             addStatement.addBatch(update + "next_id SET neighborhood_id = " + idNeighborhood);
             addStatement.addBatch("UPDATE app_config SET waiter_devices = " + waiterdevices);
-            System.out.println("Inserindo " + waiterdevices + " Waiter_Devices.......");
+            addStatement.addBatch("UPDATE general_configuration SET value = " + waiterdevices + " where `key` = 'connectedAppLimit';");
             addStatement.executeBatch();
             addStatement.execute();
+            LogTex.textInfo("Habilitado " + waiterdevices + " Dispositivos");
         } catch (SQLException e) {
-            LogTex.textError("Erro na verificação de Update");
+            LogTex.textError("Erro no Update");
             LogTex.textError(String.valueOf(e));
         }
     }
