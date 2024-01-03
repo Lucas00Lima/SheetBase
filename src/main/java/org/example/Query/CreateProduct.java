@@ -6,10 +6,9 @@ import org.example.LogTex;
 import org.example.factory.ProductFactory;
 import org.example.entidades.Product;
 import java.sql.*;
-
+//FIXME: INSERI EXCEPTION QUE QUANDO ACIONADA ELE TRAVA O PROGRAMA, REPASSAR ISSO PARA AS OUTRAS CLASSES
 public class CreateProduct {
     private final InsertQuery insertQuery = new InsertQuery();
-
     public void createProduct(Connection connection, Sheet sheet, int rowIndex) {
         try {
             String table = "product";
@@ -73,6 +72,7 @@ public class CreateProduct {
         } catch (Exception e) {
             LogTex.textError("Erro na criação de Produto");
             LogTex.textError(String.valueOf(e));
+            throw new RuntimeException("Erro na criação de Produto", e);
         }
     }
 }
