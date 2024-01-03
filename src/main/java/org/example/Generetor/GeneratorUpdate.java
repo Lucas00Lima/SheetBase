@@ -7,7 +7,7 @@ import org.example.Query.CreateProduct;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-
+//TODO: foi criado o update, porém esta inutilizavel
 public class GeneratorUpdate {
     private final DataAcess dataAcess;
     private final String filePath;
