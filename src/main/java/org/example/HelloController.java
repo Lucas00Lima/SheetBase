@@ -2,15 +2,13 @@ package org.example;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
+import org.example.Alert.Error;
 import org.example.Generetor.Generator;
 import javafx.scene.text.Text;
 //TODO: Retirado o supplier e updateSheet
@@ -49,7 +47,9 @@ public class HelloController {
 //        } else if (checkSupplier.isSelected()) {
 //            executeLogicForCheckBox("supplier");
         } else {
-            LogTex.textError("Nenhum CheckBox selecionado");
+            Error alert = new Error();
+            alert.Alerta("Nenhum CheckBox selecionado");
+            LogTex.textError("Selecione um checkBox");
         }
     }
     private void executeLogicForCheckBox(String checkBoxName) {
@@ -61,6 +61,10 @@ public class HelloController {
     protected void onSearchButtonClick() {
         DataAcess dataAcess = new DataAcess();
         sheet = dataAcess.accessSheet();
+        if (sheet == null) {
+            Error alert = new Error();
+            alert.Alerta("Selecione uma planilha");
+        }
         inputLocal.setText(sheet);
     }
     public void appendLog(String message, boolean isError) {

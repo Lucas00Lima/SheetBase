@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DataAcess {
     public Connection connectionDB() {
@@ -22,6 +23,8 @@ public class DataAcess {
     public String accessSheet() {
         String filePath = null;
         JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de planilha", "xls", "xlsx");
+        fileChooser.setFileFilter(filter);
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
@@ -30,6 +33,5 @@ public class DataAcess {
             LogTex.textError("Seleciona uma planilha");
         }
         return filePath;
-
     }
 }
