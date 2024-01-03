@@ -43,10 +43,9 @@
         <HBox GridPane.rowIndex="1">
             <VBox fx:id="vboxCheck">
                 <CheckBox fx:id="checkProduct" styleClass="check-box-custom" text="Importar Produtos" />
-                <CheckBox fx:id="checkSupplier" styleClass="check-box-custom" text="Importar Fornecedor" />
             </VBox>
             <VBox>
-                <CheckBox fx:id="updateSheet" mnemonicParsing="false" styleClass="check-box-custom" text="Atualizar Tributação" />
+<!--                <CheckBox fx:id="updateSheet" mnemonicParsing="false" styleClass="check-box-custom" text="Atualizar Tributação" />-->
             </VBox>
             <GridPane.margin>
                 <Insets top="10.0" />

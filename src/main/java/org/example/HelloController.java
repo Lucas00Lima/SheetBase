@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import org.example.Generetor.Generator;
 import javafx.scene.text.Text;
-
+//TODO: Retirado o supplier e updateSheet
 public class HelloController {
     public AnchorPane containerMaster;
     public GridPane gridPane;
@@ -22,11 +22,7 @@ public class HelloController {
     public ScrollPane scrollPane;
     private String sheet;
     @FXML
-    public CheckBox checkSupplier;
-    @FXML
     private CheckBox checkProduct;
-    @FXML
-    public CheckBox updateSheet;
     @FXML
     private TextField inputLocal;
     @FXML
@@ -34,19 +30,15 @@ public class HelloController {
     @FXML
     private void initialize() {
         addSelectionListener(checkProduct);
-        addSelectionListener(checkSupplier);
         LogTex.setFrontendController(this);
     }
     private void addSelectionListener(CheckBox checkBox) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                // Desmarca os outros CheckBox
-                if (checkBox != checkProduct) {
-                    checkProduct.setSelected(false);
-                }
-                if (checkBox != checkSupplier) {
-                    checkSupplier.setSelected(false);
-                }
+                if (checkBox != checkProduct) { checkProduct.setSelected(false); }
+//                if (checkBox != checkSupplier) {
+//                    checkSupplier.setSelected(false);
+//                }
             }
         });
     }
@@ -54,15 +46,14 @@ public class HelloController {
     protected void onExecuteButtonClick() {
         if (checkProduct.isSelected()) {
             executeLogicForCheckBox("product");
-        } else if (checkSupplier.isSelected()) {
-            executeLogicForCheckBox("supplier");
+//        } else if (checkSupplier.isSelected()) {
+//            executeLogicForCheckBox("supplier");
         } else {
             LogTex.textError("Nenhum CheckBox selecionado");
         }
     }
     private void executeLogicForCheckBox(String checkBoxName) {
         DataAcess dataAcess = new DataAcess();
-        System.out.println(sheet);
         Generator generator = new Generator(dataAcess, checkBoxName, sheet);
         generator.generetor();
     }
@@ -77,9 +68,6 @@ public class HelloController {
         if (isError) { logText.setFill(Color.RED); }
         texLog.getChildren().add(logText);
         texLog.getChildren().add(new Text("\n"));
-        Platform.runLater(() -> {
-            // Rola para a última linha
-            scrollPane.setVvalue(1.0);
-        });
+        Platform.runLater(() -> {scrollPane.setVvalue(1.0);});
     }
 }

@@ -38,6 +38,7 @@ public class Generator {
                 int emptyRowCount = 0;
                 switch (table) {
                     case "product":
+                        LogTex.textInfo("Criando produtos e categoria");
                         for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                             Row row = sheet.getRow(rowIndex);
                             if (row == null) {
@@ -61,7 +62,6 @@ public class Generator {
                                 createProduct.createProduct(connection, sheet, rowIndex);
                             }
                         }
-                        LogTex.textInfo("Import de produtos e categoria");
                         LogTex.textInfo("Tudo Concluido");
                         break;
                     case "client":
