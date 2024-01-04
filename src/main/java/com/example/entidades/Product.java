@@ -8,7 +8,6 @@ public class Product {
     final private int price;
     final private int type;
     final private int type2;
-    final private String combo;
     final private int cost;
     final private String ncm;
     final private String cfop;
@@ -28,7 +27,7 @@ public class Product {
     final private int balcony;
     final private int status;
 
-    public Product(String internalCode, String barcode, String name, int category, String description, int price, int type, int type2, String combo, int cost, String ncm, String cfop, String cest, String cst, int icms, String piscod, String pis, String cofinscod, String cofins, int icmdRed, int currentStock, String measureUnit, int delivery, int hall_table, int card, int balcony, int status) {
+    public Product(String internalCode, String barcode, String name, int category, String description, int price, int type, int type2, int cost, String ncm, String cfop, String cest, String cst, int icms, String piscod, String pis, String cofinscod, String cofins, int icmdRed, int currentStock, String measureUnit, int delivery, int hall_table, int card, int balcony, int status) {
         this.internalCode = internalCode;
         this.barcode = barcode;
         this.name = name;
@@ -37,7 +36,6 @@ public class Product {
         this.price = price;
         this.type = type;
         this.type2 = type2;
-        this.combo = combo;
         this.cost = cost;
         this.ncm = ncm;
         this.cfop = cfop;
@@ -80,9 +78,6 @@ public class Product {
     }
     public int getType2() {
         return type2;
-    }
-    public String getCombo() {
-        return combo;
     }
     public int getCost() {
         return cost;

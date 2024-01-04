@@ -72,7 +72,7 @@ public class ProductFactory implements TreatmentRows {
         int card = treatmentVariable.tratmentOrigem(cardCell);
         int balcony = treatmentVariable.tratmentOrigem(balconyCell);
         int status = treatmentVariable.tratmentOrigem(statusCell);
-        return new Product(internalCode, barcode, name, categoryId, description, price, type, type2, combo , cost,  ncm, cfop, cest, cst,
+        return new Product(internalCode, barcode, name, categoryId, description, price, type, type2, cost , ncm, cfop, cest, cst,
                 icms, piscod, pis, cofinscod, cofins, icmsRed, currentStock, measureUnit, delivery, hall_table, card, balcony, status);
     }
 }
