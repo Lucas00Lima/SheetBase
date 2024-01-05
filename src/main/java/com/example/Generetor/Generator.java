@@ -1,7 +1,6 @@
 package com.example.Generetor;
 
 import com.example.DataAcess;
-import com.example.Functions.Update;
 import com.example.Query.*;
 import org.apache.poi.ss.usermodel.*;
 import com.example.Alert.Error;
