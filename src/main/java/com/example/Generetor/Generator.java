@@ -143,8 +143,6 @@ public class Generator {
                     }
                     CreateExtra createExtra = new CreateExtra();
                     createExtra.createExtra(connection);
-                    Update update = new Update();
-                    update.update(connection);
                 }
             }
         } catch (SQLException | IOException e) {
