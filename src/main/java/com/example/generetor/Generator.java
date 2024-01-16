@@ -1,6 +1,7 @@
 package com.example.generetor;
 
 import com.example.DataAcess;
+import com.example.functions.Update;
 import com.example.query.*;
 import org.apache.poi.ss.usermodel.*;
 import com.example.alert.Error;
@@ -15,16 +16,18 @@ public class Generator {
     private final DataAcess dataAcess;
     private final String table;
     private final String filePath;
+
     public Generator(DataAcess dataAcess, String table, String filePath) {
         this.dataAcess = dataAcess;
         this.table = table;
         this.filePath = filePath;
     }
+
     public void generetor() {
         Error alert = new Error();
         try {
             CreateProduct createProduct = new CreateProduct();
-            if (filePath == null ) {
+            if (filePath == null) {
                 alert.Alerta("Escolha uma planilha");
             } else {
                 FileInputStream fileInput = new FileInputStream(filePath);
@@ -33,7 +36,7 @@ public class Generator {
                 Connection connection = dataAcess.connectionDB();
                 int rowIndex;
                 int emptyRowCount = 0;
-                if (table == null ){
+                if (table == null) {
                     alert.Alerta("Escolha um checkBox");
                 } else {
                     switch (table) {
@@ -142,6 +145,8 @@ public class Generator {
                     }
                     CreateExtra createExtra = new CreateExtra();
                     createExtra.createExtra(connection);
+                    Update update = new Update();
+                    update.update(connection);
                 }
             }
         } catch (SQLException | IOException e) {
