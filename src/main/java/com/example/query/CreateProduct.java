@@ -1,6 +1,6 @@
-package com.example.Query;
+package com.example.query;
 
-import com.example.Functions.InsertQuery;
+import com.example.functions.InsertQuery;
 import com.example.LogTex;
 import com.example.entidades.Product;
 import com.example.factory.ProductFactory;

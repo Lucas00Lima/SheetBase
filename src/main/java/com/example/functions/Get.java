@@ -1,10 +1,10 @@
-package com.example.Functions;
+package com.example.functions;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import com.example.LogTex;
-import com.example.Query.CreateCategory;
+import com.example.query.CreateCategory;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;

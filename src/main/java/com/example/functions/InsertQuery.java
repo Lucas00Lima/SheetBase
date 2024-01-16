@@ -1,4 +1,4 @@
-package com.example.Functions;
+package com.example.functions;
 
 import com.example.LogTex;
 

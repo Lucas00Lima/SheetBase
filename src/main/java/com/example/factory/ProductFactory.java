@@ -3,7 +3,7 @@ package com.example.factory;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import com.example.Functions.Get;
+import com.example.functions.Get;
 import com.example.TreatmentRows;
 import com.example.entidades.Product;
 import java.sql.Connection;

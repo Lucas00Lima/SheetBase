@@ -1,9 +1,9 @@
-package com.example.Generetor;
+package com.example.generetor;
 
 import com.example.DataAcess;
-import com.example.Query.*;
+import com.example.query.*;
 import org.apache.poi.ss.usermodel.*;
-import com.example.Alert.Error;
+import com.example.alert.Error;
 import com.example.LogTex;
 
 import java.io.FileInputStream;

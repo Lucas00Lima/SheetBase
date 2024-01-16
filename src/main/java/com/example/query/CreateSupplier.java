@@ -1,10 +1,10 @@
-package com.example.Query;
+package com.example.query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.example.Functions.Get;
-import com.example.Functions.InsertQuery;
+import com.example.functions.Get;
+import com.example.functions.InsertQuery;
 import com.example.LogTex;
 import com.example.entidades.Fornecedor;
 import com.example.factory.SupplierFactory;

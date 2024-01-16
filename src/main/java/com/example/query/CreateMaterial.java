@@ -1,7 +1,7 @@
-package com.example.Query;
+package com.example.query;
 
-import com.example.Functions.Get;
-import com.example.Functions.InsertQuery;
+import com.example.functions.Get;
+import com.example.functions.InsertQuery;
 import com.example.LogTex;
 import com.example.entidades.Material;
 import org.apache.poi.ss.usermodel.Sheet;

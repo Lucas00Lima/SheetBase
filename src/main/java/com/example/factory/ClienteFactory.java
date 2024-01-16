@@ -4,7 +4,7 @@ import com.example.entidades.Client;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import com.example.Functions.Get;
+import com.example.functions.Get;
 import com.example.TreatmentRows;
 
 import java.sql.Connection;

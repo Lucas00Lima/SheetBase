@@ -1,8 +1,8 @@
-package com.example.Generetor;
+package com.example.generetor;
 
 import com.example.DataAcess;
 import org.apache.poi.ss.usermodel.*;
-import com.example.Query.CreateProduct;
+import com.example.query.CreateProduct;
 
 import java.io.*;
 import java.sql.Connection;

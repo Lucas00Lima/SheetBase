@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.Functions.TreatmentVariable;
+import com.example.functions.TreatmentVariable;
 import org.apache.poi.ss.usermodel.DataFormatter;
 
 public interface TreatmentRows {

@@ -1,6 +1,6 @@
-package com.example.Query;
+package com.example.query;
 
-import com.example.Functions.InsertQuery;
+import com.example.functions.InsertQuery;
 import com.example.entidades.Client;
 import com.example.factory.ClienteFactory;
 import org.apache.poi.ss.usermodel.Sheet;

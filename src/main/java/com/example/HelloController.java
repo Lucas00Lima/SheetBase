@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.Alert.Error;
-import com.example.Generetor.Generator;
+import com.example.alert.Error;
+import com.example.generetor.Generator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
