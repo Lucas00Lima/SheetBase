@@ -38,8 +38,8 @@ public class ClienteFactory implements TreatmentRows {
         String id = dataFormatter.formatCellValue(idCell);
         String name = dataFormatter.formatCellValue(nameCell);
         int type1 = treatmentVariable.cpfOrCnpj(numDocCell);
-        String numDoc = dataFormatter.formatCellValue(numDocCell);
-        String numDoc2 = dataFormatter.formatCellValue(numDoc2Cell);
+        String numDoc = treatmentVariable.document(numDocCell);
+        String numDoc2 = treatmentVariable.document(numDoc2Cell);
         String companyName = dataFormatter.formatCellValue(companyNameCell);
         String tel = dataFormatter.formatCellValue(telCell);
         int gender = treatmentVariable.gender(genderCell);

@@ -74,5 +74,6 @@ public class CreateClient {
         preparedStatement.setString(48, "");
         preparedStatement.setInt(49, 0);
         preparedStatement.execute();
+        System.out.println(preparedStatement);
     }
 }
