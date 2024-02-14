@@ -11,7 +11,7 @@ public class DataAcess {
         try {
             String username = "root";
             String storedPassword = "@soma+";
-            String bancoCliente = "000";
+            String bancoCliente = JOptionPane.showInputDialog("Insira o numero do cliente");
             String url = "jdbc:mysql://localhost:3306/db" + bancoCliente;
             return DriverManager.getConnection(url, username, storedPassword);
         } catch (SQLException e) {
