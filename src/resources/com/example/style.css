@@ -22,3 +22,17 @@
     -fx-border-radius: 30px;
     -fx-spacing: 10px;
 }
+#buttonUpdate {
+    -fx-background-color: black;
+    -fx-text-fill: #f6eb5e;
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
+    -fx-spacing: 10px;
+}
+#buttonCreate {
+    -fx-background-color: black;
+    -fx-text-fill: #f6eb5e;
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
+    -fx-spacing: 10px;
+}
