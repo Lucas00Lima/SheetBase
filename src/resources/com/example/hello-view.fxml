@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.lang.String?>
 <AnchorPane fx:id="containerMaster" prefHeight="330.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HelloController">
     <stylesheets>
         <String fx:value="/com/example/style.css" />
@@ -15,7 +15,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="189.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -24,29 +24,30 @@
         </padding>
         <TextField fx:id="inputLocal" prefHeight="25.0" prefWidth="344.0">
             <GridPane.margin>
-                <Insets right="140.0" />
+                <Insets right="140.0" top="-35.0" />
             </GridPane.margin>
         </TextField>
         <Button fx:id="buttonSearch" minHeight="5.0" minWidth="50.0" mnemonicParsing="false" onAction="#onSearchButtonClick" text="Buscar" GridPane.halignment="RIGHT">
             <GridPane.margin>
-                <Insets right="85.0" />
+                <Insets left="10.0" right="85.0" top="-35.0" />
             </GridPane.margin>
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
         </Button>
-        <Button onAction="#onExecuteButtonClick" text="Criar Base" GridPane.halignment="RIGHT">
+        <Button fx:id="buttonCreate" onAction="#onExecuteButtonClick" prefHeight="25.0" prefWidth="83.0" text="Criar Base" GridPane.halignment="RIGHT">
             <GridPane.margin>
-                <Insets left="10.0" />
+                <Insets left="10.0" top="-35.0" />
             </GridPane.margin>
         </Button>
-        <HBox GridPane.rowIndex="1">
-            <VBox fx:id="vboxCheck">
-                <CheckBox fx:id="checkProduct" styleClass="check-box-custom" text="Importar Produtos" />
-            </VBox>
-            <VBox>
-<!--                <CheckBox fx:id="updateSheet" mnemonicParsing="false" styleClass="check-box-custom" text="Atualizar Tributação" />-->
-            </VBox>
+        <Button fx:id="buttonUpdate" onAction="#oncheckUpdate" prefHeight="25.0" prefWidth="698.0" text="Atualizar Tributação" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets top="30.0" />
+            </GridPane.margin>
+        </Button>
+        <HBox prefHeight="100.0" prefWidth="718.0" GridPane.rowIndex="1">
+            <VBox fx:id="vboxCheck" />
+             <CheckBox fx:id="checkProduct" styleClass="check-box-custom" text="Importar Produtos" />
             <GridPane.margin>
                 <Insets top="10.0" />
             </GridPane.margin>
@@ -62,4 +63,7 @@
          </GridPane.margin>
         </ScrollPane>
     </GridPane>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </AnchorPane>

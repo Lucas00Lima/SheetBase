@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.alert.Error;
 import com.example.generetor.Generator;
+import com.example.generetor.GeneratorUpdate;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,6 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Text;
+import java.io.IOException;
+import java.sql.SQLException;
+
 //TODO: Retirado o supplier e updateSheet
 public class HelloController {
     public AnchorPane containerMaster;
@@ -18,7 +22,9 @@ public class HelloController {
     public Button buttonSearch;
     public VBox vboxCheck;
     public ScrollPane scrollPane;
-    private String sheet;
+    public Button buttonUpdate;
+    public Button buttonCreate;
+    private String filePath;
     @FXML
     private CheckBox checkProduct;
     @FXML
@@ -33,10 +39,7 @@ public class HelloController {
     private void addSelectionListener(CheckBox checkBox) {
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                if (checkBox != checkProduct) { checkProduct.setSelected(false); }
-//                if (checkBox != checkSupplier) {
-//                    checkSupplier.setSelected(false);
-//                }
+                if (checkBox != checkProduct) {checkProduct.setSelected(false); }
             }
         });
     }
@@ -44,28 +47,32 @@ public class HelloController {
     protected void onExecuteButtonClick() {
         if (checkProduct.isSelected()) {
             executeLogicForCheckBox("product");
-//        } else if (checkSupplier.isSelected()) {
-//            executeLogicForCheckBox("supplier");
         } else {
             Error alert = new Error();
             alert.Alerta("Nenhum CheckBox selecionado");
             LogTex.textError("Selecione um checkBox");
         }
     }
+    @FXML
+    protected void oncheckUpdate() throws SQLException, IOException {
+        DataAcess dataAcess = new DataAcess();
+        GeneratorUpdate update =  new GeneratorUpdate(dataAcess, filePath);
+        update.UpdateProduct();
+    }
     private void executeLogicForCheckBox(String checkBoxName) {
         DataAcess dataAcess = new DataAcess();
-        Generator generator = new Generator(dataAcess, checkBoxName, sheet);
+        Generator generator = new Generator(dataAcess, checkBoxName, filePath);
         generator.generetor();
     }
     @FXML
     protected void onSearchButtonClick() {
         DataAcess dataAcess = new DataAcess();
-        sheet = dataAcess.accessSheet();
-        if (sheet == null) {
+        filePath = dataAcess.accessSheet();
+        if (filePath == null) {
             Error alert = new Error();
             alert.Alerta("Selecione uma planilha");
         }
-        inputLocal.setText(sheet);
+        inputLocal.setText(filePath);
     }
     public void appendLog(String message, boolean isError) {
         Text logText = new Text(message + "\n");
