@@ -65,6 +65,10 @@ public class Generator {
                                     createProduct.createProduct(connection, sheet, rowIndex);
                                 }
                             }
+                            CreateExtra createExtra = new CreateExtra();
+                            createExtra.createExtra(connection);
+                            Update update = new Update();
+                            update.update(connection);
                             LogTex.textInfo("Tudo Concluido");
                             break;
                         case "client":
@@ -143,10 +147,6 @@ public class Generator {
                             break;
                         default:
                     }
-                    CreateExtra createExtra = new CreateExtra();
-                    createExtra.createExtra(connection);
-                    Update update = new Update();
-                    update.update(connection);
                 }
             }
         } catch (SQLException | IOException e) {
@@ -155,9 +155,7 @@ public class Generator {
     }
 
     private static boolean isRowEmpty(Row row) {
-        if (row == null) {
-            return true;
-        }
+        if (row == null) {return true;}
         // Faz a leitura para o código não percorrer a planilha toda e sim só até 3
         // linhas vazias, acima disso ele para de ler
         for (int cellIndex = row.getFirstCellNum() + 2; cellIndex <= row.getLastCellNum(); cellIndex++) {
