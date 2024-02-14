@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 350);
         scene.getStylesheets().add(getClass().getResource("/com/example/style.css").toExternalForm());
-        stage.setTitle("Criação de base");
+        stage.setTitle("PlanilhaV2");
         stage.setScene(scene);
         stage.show();
         centerStage(stage);
