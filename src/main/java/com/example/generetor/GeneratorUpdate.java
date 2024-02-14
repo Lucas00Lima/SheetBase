@@ -48,7 +48,6 @@ public class GeneratorUpdate {
             int icms = Integer.parseInt(icmsString);
 
             String pisCod = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("PIS Cod")));
-            pisCod = "0" + pisCod;
             String pisAString = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("PIS Aliq")));
             pisAString = pisAString.replace(",", "");
             pisAString = pisAString + "0";
