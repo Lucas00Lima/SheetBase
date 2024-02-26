@@ -67,8 +67,11 @@ public class CreateProduct {
             preparedStatement.setInt(48, 0);//combo_price);
             preparedStatement.setInt(49, 0);//production_group2);
             preparedStatement.setInt(50, 1000);//pack_amount);
-            preparedStatement.setInt(51, 0);//produced);
-            preparedStatement.setNull(52, Types.DATE);//deleted_at);
+            preparedStatement.setNull(51, Types.NULL);//icms_reduction);
+            preparedStatement.setInt(52, 0);//window_notes);
+            preparedStatement.setInt(53, 0);//produced);
+            preparedStatement.setNull(54, Types.DATE);//deleted_at);
+            preparedStatement.setNull(55, Types.DATE);//manufacturing_date);
             preparedStatement.execute();
         } catch (Exception e) {
             LogTex.textError("Erro na criação de Produto");
