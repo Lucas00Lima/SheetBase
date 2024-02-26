@@ -48,11 +48,6 @@ public class Generator {
                 break;
             case "client":
                 for (rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
-                    Row row = sheet.getRow(rowIndex);
-                    if (isRowEmpty(row)) {
-                        emptyRowCount++;
-                        if (emptyRowCount >= 3) { break; }
-                    } else { emptyRowCount = 0; }
                     CreateClient createClient = new CreateClient();
                     createClient.createClient(connection, sheet, rowIndex);
                 }
