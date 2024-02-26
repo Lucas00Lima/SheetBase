@@ -3,6 +3,8 @@ package com.example.functions;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -98,10 +100,31 @@ public class TreatmentVariable {
             return 0;
         }
     }
+    public String document(Cell valorCell) {
+        String doc = dataFormatter.formatCellValue(valorCell);
+        String regex = "[1-9]";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(doc);
+        if (matcher.find()) {
+            return doc;
+        } else {
+            return doc = "";
+        }
+    }
+    //TODO: colocar um verificador de ID
+    public int idClient(Cell codeCell) {
+        if (codeCell == null) {
+
+        }
+        int id = Integer.parseInt(dataFormatter.formatCellValue(codeCell));
+
+
+        return id;
+    }
     public Date dateBrithday(Cell valorCell) {
         try {
             String valor = dataFormatter.formatCellValue(valorCell);
-            if (valor == null || valor.isEmpty()) { return null; }
+            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) { return null; }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             return (Date) formatter.parse(valor);
         } catch (ParseException e) {
