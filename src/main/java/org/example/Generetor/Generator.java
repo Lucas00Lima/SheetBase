@@ -43,6 +43,8 @@ public class Generator {
                         createProduct.createProduct(connection, sheet, rowIndex);
                     }
                 }
+                CreateExtra createExtra = new CreateExtra();
+                createExtra.createExtra(connection);
                 System.out.println("Import de produtos e categoria");
                 System.out.println("Tudo Concluido");
                 break;
@@ -99,8 +101,6 @@ public class Generator {
                 break;
             default:
         }
-        CreateExtra createExtra = new CreateExtra();
-        createExtra.createExtra(connection);
     }
     private static boolean isRowEmpty(Row row) {
         if (row == null) {
