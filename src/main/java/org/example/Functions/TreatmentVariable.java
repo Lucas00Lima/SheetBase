@@ -80,12 +80,10 @@ public class TreatmentVariable {
         String valor = dataFormatter.formatCellValue(numDocCell).replaceAll("\\D", "");
         if (valor.equals("")) {
             return 1;
-        } else if (valor.length() >= 14) {
+        } else if (valor.length() >= 13) {
             return 2;
-        } else if (valor.length() <= 11) {
-            return 1;
         } else {
-            return 0;
+            return 1;
         }
     }
     public int gender(Cell genderCell) {
