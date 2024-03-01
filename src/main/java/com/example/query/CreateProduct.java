@@ -25,7 +25,7 @@ public class CreateProduct {
             preparedStatement.setInt(6, product.getType());//typeValue);
             preparedStatement.setInt(7, 0);//brand_id);
             preparedStatement.setInt(8, product.getCategory());//category_id);
-            preparedStatement.setInt(9, 0);//measure_unit);
+            preparedStatement.setString(9, "u");//measure_unit);
             preparedStatement.setInt(10, product.getPrice());//priceValue);
             preparedStatement.setInt(11, 0);//aux_price);
             preparedStatement.setInt(12, 0);//minimum_price);
@@ -44,8 +44,8 @@ public class CreateProduct {
             preparedStatement.setInt(25, 0);//supplier_id);
             preparedStatement.setInt(26, 0);//purchase_amount);
             preparedStatement.setInt(27, product.getIcms());//tax1);
-            preparedStatement.setInt(28, 0);//tax2);
-            preparedStatement.setInt(29, 0);//tax3);
+            preparedStatement.setInt(28, product.getPis());//tax2);
+            preparedStatement.setInt(29, product.getCofins());//tax3);
             preparedStatement.setInt(30, 0);//tax4);
             preparedStatement.setInt(31, 0);//tax5);
             preparedStatement.setInt(32, 0);//tax6);

@@ -46,9 +46,9 @@ public class ProductFactory implements TreatmentRows {
         String cst = dataFormatter.formatCellValue(cstCell);
         int icms = treatmentVariable.tratmentIcms(icmsCell);
         String piscod = dataFormatter.formatCellValue(piscodCell);
-        String pis = dataFormatter.formatCellValue(pisCell);
+        int pis = treatmentVariable.tratmentIcms(pisCell);
         String cofinscod = dataFormatter.formatCellValue(cofinscodCell);
-        String cofins = dataFormatter.formatCellValue(cofinsCell);
+        int cofins = treatmentVariable.tratmentIcms(cofinsCell);
         int icmsRed = treatmentVariable.tratmentIcms(icmsRedCell);
         return new Product(internalCode, barcode, name, categoryId, price, type, type2 , ncm, cfop, cest, cst,
                 icms, piscod, pis, cofinscod, cofins, icmsRed);

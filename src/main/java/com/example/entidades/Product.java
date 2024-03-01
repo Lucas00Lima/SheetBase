@@ -13,12 +13,12 @@ public class Product {
     final private String cst;
     final private int icms;
     final private String piscod;
-    final private String pis;
+    final private int pis;
     final private String cofinscod;
-    final private String cofins;
+    final private int cofins;
     final private int icmdRed;
 
-    public Product(String internalCode, String barcode, String name, int category, int price, int type, int type2, String ncm, String cfop, String cest, String cst, int icms, String piscod, String pis, String cofinscod, String cofins, int icmdRed) {
+    public Product(String internalCode, String barcode, String name, int category, int price, int type, int type2, String ncm, String cfop, String cest, String cst, int icms, String piscod, int pis, String cofinscod, int cofins, int icmdRed) {
         this.internalCode = internalCode;
         this.barcode = barcode;
         this.name = name;
@@ -76,13 +76,13 @@ public class Product {
     public String getPiscod() {
         return piscod;
     }
-    public String getPis() {
+    public int getPis() {
         return pis;
     }
     public String getCofinscod() {
         return cofinscod;
     }
-    public String getCofins() {
+    public int getCofins() {
         return cofins;
     }
     public int getIcmdRed() {
