@@ -1,6 +1,7 @@
 package com.example.generetor;
 
 import com.example.DataAcess;
+import com.example.LogTex;
 import com.example.functions.FindColumns;
 import org.apache.poi.ss.usermodel.*;
 
@@ -29,7 +30,7 @@ public class GeneratorUpdate {
         FindColumns findColumns = new FindColumns(filePath);
         int rowIndex;
         int emptyRowCount = 0;
-        for (rowIndex = 2; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+        for (rowIndex = 3; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             if (row == null) {continue;}
             if (isRowEmpty(row)) {
@@ -84,6 +85,7 @@ public class GeneratorUpdate {
             preparedStatement.setString(10, id);
             preparedStatement.executeUpdate();
         }
+        LogTex.textInfo("Atualização Concluida");
     }
     private static boolean isRowEmpty(Row row) {
         if (row == null) {return true;}
