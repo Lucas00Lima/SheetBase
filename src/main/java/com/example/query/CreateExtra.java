@@ -80,9 +80,12 @@ public class CreateExtra {
             vincularCodigo.setString(47, "");//parameters);
             vincularCodigo.setInt(48, 0);//combo_price);
             vincularCodigo.setInt(49, 0);//production_group2);
-            vincularCodigo.setInt(50, 100);//pack_amount);
-            vincularCodigo.setInt(51, 0);
-            vincularCodigo.setNull(52, Types.DATE);//deleted_at);
+            vincularCodigo.setInt(50, 1000);//pack_amount);
+            vincularCodigo.setNull(51, Types.NULL);//icms_reduction);
+            vincularCodigo.setInt(52, 0);//window_notes);
+            vincularCodigo.setInt(53, 0);//produced);
+            vincularCodigo.setNull(54, Types.DATE);//deleted_at);
+            vincularCodigo.setNull(55, Types.DATE);//manufacturing_date);
             vincularCodigo.execute();
         } catch (SQLException e) {
             LogTex.textError("Erro na criação de Produto Extra");
