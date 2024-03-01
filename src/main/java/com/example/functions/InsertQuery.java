@@ -26,11 +26,11 @@ public class InsertQuery {
                         if (columnName.equals("id")) { continue; }
                         columnNames.add(columnName);
                         getDefaultList().add(itensListaDefault);
-                        if (columnName.equals("deleted_at")) { break; }
+                        if (columnName.equals("manufacturing_date")) { break; }
                     } else if (table.equals("category")) {
                         columnNames.add(columnName);
                         getDefaultList().add(itensListaDefault);
-                        if (columnName.equals("kitchen_notes")) { break; }
+                        if (columnName.equals("edit_rule")) { break; }
                     } else if (table.equals("material")) {
                         columnNames.add(columnName);
                         getDefaultList().add(itensListaDefault);
