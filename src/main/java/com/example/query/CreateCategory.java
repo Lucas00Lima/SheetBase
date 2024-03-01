@@ -34,6 +34,7 @@ public class CreateCategory {
             categoryStatement.setInt(14, father_id); //Father_Id
             categoryStatement.setInt(15, is_father); //is_Father_category
             categoryStatement.setString(16, ""); //Kitchen_notes
+            categoryStatement.setInt(17, 0); //edit_rule
             categoryStatement.execute();
             return idCategory;
         } catch (SQLException e) {
