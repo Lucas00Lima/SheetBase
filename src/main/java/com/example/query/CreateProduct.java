@@ -18,14 +18,14 @@ public class CreateProduct {
             String insertQueryProduct = insertQuery.insert(table, connection);
             PreparedStatement preparedStatement = connection.prepareStatement(insertQueryProduct);
             preparedStatement.setString(1, product.getName());//nameValue);
-            preparedStatement.setString(2, product.getDescription());//descriptionValue);
+            preparedStatement.setString(2, "");//descriptionValue);
             preparedStatement.setString(3, product.getInternalCode());//internal_code);
             preparedStatement.setString(4, product.getBarcode());//barcodeValue);
             preparedStatement.setInt(5, 1);//department_id);
             preparedStatement.setInt(6, product.getType());//typeValue);
             preparedStatement.setInt(7, 0);//brand_id);
             preparedStatement.setInt(8, product.getCategory());//category_id);
-            preparedStatement.setString(9, product.getMeasureUnit());//measure_unit);
+            preparedStatement.setInt(9, 0);//measure_unit);
             preparedStatement.setInt(10, product.getPrice());//priceValue);
             preparedStatement.setInt(11, 0);//aux_price);
             preparedStatement.setInt(12, 0);//minimum_price);
