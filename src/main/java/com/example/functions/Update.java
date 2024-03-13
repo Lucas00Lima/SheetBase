@@ -30,7 +30,6 @@ public class Update {
             addStatement.addBatch(update + "next_id SET neighborhood_id = " + idNeighborhood);
             addStatement.addBatch(update + "app_config SET waiter_devices = " + waiterdevices);
             addStatement.addBatch(update + "general_configuration SET value = " + waiterdevices + " where `key` = 'connectedAppLimit';");
-            addStatement.addBatch(update + "app_config SET current_version = 1.11;");
             addStatement.executeBatch();
             addStatement.execute();
             LogTex.textInfo("Habilitado " + waiterdevices + " Dispositivos");
