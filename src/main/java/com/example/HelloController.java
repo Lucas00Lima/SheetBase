@@ -54,7 +54,7 @@ public class HelloController {
         }
     }
     @FXML
-    protected void oncheckUpdate() throws SQLException, IOException {
+    protected void oncheckUpdate() {
         DataAcess dataAcess = new DataAcess();
         GeneratorUpdate update =  new GeneratorUpdate(dataAcess, filePath);
         update.UpdateProduct();
