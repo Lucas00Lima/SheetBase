@@ -4,6 +4,7 @@ module com.example {
     requires java.sql;
     requires java.desktop;
     requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
 
     opens com.example to javafx.fxml;
 
