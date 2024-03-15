@@ -34,8 +34,8 @@ public class SupplierFactory implements TreatmentRows {
         String email = dataFormatter.formatCellValue(emailCell);
         String numDoc = dataFormatter.formatCellValue(numDocCell);
         String numDoc2 = dataFormatter.formatCellValue(numDocCell2);
-        String tel = treatmentVariable.celTreatment(telCell);
-        String phone = treatmentVariable.celTreatment(phoneCell);
+        String tel = dataFormatter.formatCellValue(telCell);
+        String phone = dataFormatter.formatCellValue(phoneCell);
         String street = dataFormatter.formatCellValue(streetCell);
         String number = dataFormatter.formatCellValue(numberCell);
         String cep = dataFormatter.formatCellValue(cepCell);
