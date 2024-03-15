@@ -5,12 +5,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.example.entidades.Client;
 
 public class TreatmentVariable {
     private DataFormatter dataFormatter = new DataFormatter();
+
     public int variavelValue(String valor) {
         int priceValue;
         if (valor.equals("")) {
@@ -47,6 +48,7 @@ public class TreatmentVariable {
         }
         return priceValue;
     }
+
     public int tratmentIcms(Cell icmsCell) {
         String valor = dataFormatter.formatCellValue(icmsCell);
         int value;
@@ -57,6 +59,7 @@ public class TreatmentVariable {
         }
         return value;
     }
+
     public int tratmentOrigem(Cell valorCell) {
         String valor = dataFormatter.formatCellValue(valorCell);
         int valueZero;
@@ -67,6 +70,7 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
+
     public int tratmentZero(String valor) {
         int valueZero;
         if (valor.equals("")) {
@@ -76,6 +80,7 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
+
     public int cpfOrCnpj(Cell numDocCell) {
         String valor = dataFormatter.formatCellValue(numDocCell).replaceAll("\\D", "");
         if (valor.equals("")) {
@@ -86,9 +91,10 @@ public class TreatmentVariable {
             return 1;
         }
     }
+
     public int gender(Cell genderCell) {
         String valor = dataFormatter.formatCellValue(genderCell);
-        if ( valor == null || valor.equals("")) {
+        if (valor == null || valor.equals("")) {
             return 0;
         }
         if (valor.contains("Masculino") || valor.contains("M") || valor.contains("Masculino")) {
@@ -99,6 +105,7 @@ public class TreatmentVariable {
             return 0;
         }
     }
+
     public String document(Cell valorCell) {
         String doc = dataFormatter.formatCellValue(valorCell);
         String regex = "[1-9]";
@@ -110,6 +117,7 @@ public class TreatmentVariable {
             return doc = "";
         }
     }
+
     //TODO: colocar um verificador de ID
     public int idClient(Cell codeCell) {
         if (codeCell == null) {
@@ -120,35 +128,89 @@ public class TreatmentVariable {
 
         return id;
     }
+
     public Date dateBrithday(Cell valorCell) {
         try {
             String valor = dataFormatter.formatCellValue(valorCell);
-            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) { return null; }
+            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) {
+                return null;
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             return (Date) formatter.parse(valor);
-        } catch (ParseException e) {e.printStackTrace();}
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
     public String measureUnit(Cell measureUnitCell) {
         String measureUnit = dataFormatter.formatCellValue(measureUnitCell);
-        if (measureUnit.isEmpty()) { measureUnit = "u"; }
+        if (measureUnit.isEmpty()) {
+            measureUnit = "u";
+        }
         return measureUnit;
     }
-    public String celTreatment(Cell celFone) {
-        String fone = dataFormatter.formatCellValue(celFone);
-        StringBuilder stringBuilder = new StringBuilder(fone);
-        if (fone.length() == 10) {
-            // Inserir parênteses no início e fechá-los no índice 2 e 6
-            stringBuilder.insert(0, "(");
-            stringBuilder.insert(3, ")");
-            stringBuilder.insert(8, "-");
-        } else if (fone.length() == 11) {
-            // Inserir parênteses no início e fechá-los no índice 3 e 7
-            stringBuilder.insert(0, "(");
-            stringBuilder.insert(4, ")");
-            stringBuilder.insert(8, "-");
+
+    public void verifyCell(Client client, Cell celPhone) {
+        String fone = dataFormatter.formatCellValue(celPhone);
+        if (!fone.isEmpty()) {
+            if (fone.contains("(") || fone.contains(")")) {
+                fone = fone.replace("(", "").replace(")", "");
+            }
+            if (fone.contains(" ")) {
+                fone = fone.replace(" ", "");
+            }
+            if (fone.contains("-")) {
+                fone = fone.replace("-", "");
+            }
+            StringBuilder stringBuilder = new StringBuilder(fone);
+            char primeiroCaractere;
+            primeiroCaractere = stringBuilder.charAt(0);
+            if (fone.length() <= 8) {
+                if ((primeiroCaractere == '9') || (primeiroCaractere == '3')) {
+                    stringBuilder.insert(0, "(");
+                    stringBuilder.insert(1, "1");
+                    stringBuilder.insert(2, "4");
+                    stringBuilder.insert(3, ")");
+                    stringBuilder.insert(8, "-");
+                    client.setTel(String.valueOf(stringBuilder));
+                    client.setCellPhone("");
+                } else if (primeiroCaractere == '1') {
+                    stringBuilder.insert(0, "(");
+                    stringBuilder.insert(3, ")");
+                    stringBuilder.insert(8, "-");
+                    client.setTel(String.valueOf(stringBuilder));
+                    client.setCellPhone("");
+                } else {
+                    client.setTel(String.valueOf(stringBuilder));
+                    client.setCellPhone("");
+                }
+            } else if (fone.length() == 9 || fone.length() == 10) {
+                if (primeiroCaractere == '9') {
+                    stringBuilder.insert(0, "(");
+                    stringBuilder.insert(1, "1");
+                    stringBuilder.insert(2, "4");
+                    stringBuilder.insert(3, ")");
+                    stringBuilder.insert(9, "-");
+                    client.setTel("");
+                    client.setCellPhone(String.valueOf(stringBuilder));
+                } else if (primeiroCaractere == '1') {
+                    stringBuilder.insert(0, "(");
+                    stringBuilder.insert(3, ")");
+                    stringBuilder.insert(9, "-");
+                    client.setTel("");
+                    client.setCellPhone(String.valueOf(stringBuilder));
+                } else {
+                    client.setTel("");
+                    client.setCellPhone(String.valueOf(stringBuilder));
+                }
+            } else if (fone.length() > 10){
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(9, "-");
+                client.setTel("");
+                client.setCellPhone(String.valueOf(stringBuilder));
+            }
         }
-        System.out.println(fone + " Phone");
-        return stringBuilder.toString();
     }
 }

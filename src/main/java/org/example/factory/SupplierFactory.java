@@ -3,7 +3,6 @@ package org.example.factory;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.TreatmentRows;
 import org.example.entidades.Fornecedor;
@@ -41,8 +40,7 @@ public class SupplierFactory implements TreatmentRows {
         String cep = dataFormatter.formatCellValue(cepCell);
         int state = get.stateId(stateCell);
         int city = get.cityId(cityCell);
-        Fornecedor supplier = new Fornecedor(id,name,companyName,email,numDoc,numDoc2,tel,phone,street,number,cep,state,city);
-        return supplier;
+        return new Fornecedor(id,name,companyName,email,numDoc,numDoc2,tel,phone,street,number,cep,state,city);
     }
 
 }
