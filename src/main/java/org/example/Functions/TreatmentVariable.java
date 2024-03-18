@@ -166,48 +166,56 @@ public class TreatmentVariable {
             StringBuilder stringBuilder = new StringBuilder(fone);
             char primeiroCaractere;
             primeiroCaractere = stringBuilder.charAt(0);
-            if (fone.length() <= 8) {
+            if (fone.length() == 8) {
                 if ((primeiroCaractere == '9') || (primeiroCaractere == '3')) {
                     stringBuilder.insert(0, "(");
                     stringBuilder.insert(1, "1");
                     stringBuilder.insert(2, "4");
                     stringBuilder.insert(3, ")");
                     stringBuilder.insert(8, "-");
+                    System.out.println(stringBuilder);
                     client.setTel(String.valueOf(stringBuilder));
                     client.setCellPhone("");
                 } else if (primeiroCaractere == '1') {
                     stringBuilder.insert(0, "(");
                     stringBuilder.insert(3, ")");
                     stringBuilder.insert(8, "-");
+                    System.out.println(stringBuilder);
                     client.setTel(String.valueOf(stringBuilder));
                     client.setCellPhone("");
                 } else {
+                    System.out.println(stringBuilder);
                     client.setTel(String.valueOf(stringBuilder));
                     client.setCellPhone("");
                 }
-            } else if (fone.length() == 9 || fone.length() == 10) {
+            }
+            if (fone.length() == 9) {
                 if (primeiroCaractere == '9') {
                     stringBuilder.insert(0, "(");
                     stringBuilder.insert(1, "1");
                     stringBuilder.insert(2, "4");
                     stringBuilder.insert(3, ")");
                     stringBuilder.insert(9, "-");
+                    System.out.println(stringBuilder);
                     client.setTel("");
                     client.setCellPhone(String.valueOf(stringBuilder));
                 } else if (primeiroCaractere == '1') {
                     stringBuilder.insert(0, "(");
                     stringBuilder.insert(3, ")");
                     stringBuilder.insert(9, "-");
+                    System.out.println(stringBuilder);
                     client.setTel("");
                     client.setCellPhone(String.valueOf(stringBuilder));
                 } else {
+                    System.out.println(stringBuilder);
                     client.setTel("");
                     client.setCellPhone(String.valueOf(stringBuilder));
                 }
-            } else if (fone.length() > 10){
+            } else {
                 stringBuilder.insert(0, "(");
                 stringBuilder.insert(3, ")");
-                stringBuilder.insert(9, "-");
+                stringBuilder.insert(10, "-");
+                System.out.println(stringBuilder);
                 client.setTel("");
                 client.setCellPhone(String.valueOf(stringBuilder));
             }
