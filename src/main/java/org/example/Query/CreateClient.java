@@ -17,7 +17,7 @@ public class CreateClient {
         InsertQuery insertQuery = new InsertQuery();
         String insertQueryClient = insertQuery.insert(table, connection);
         PreparedStatement preparedStatement = connection.prepareStatement(insertQueryClient);
-        preparedStatement.setString(1, client.getId());
+        preparedStatement.setInt(1, client.getId());
         preparedStatement.setString(2, client.getName());
         preparedStatement.setString(3, client.getCompanyName());
         preparedStatement.setString(4, "");
@@ -47,8 +47,8 @@ public class CreateClient {
         preparedStatement.setString(15, client.getNameContact2());
         preparedStatement.setString(16, client.getEmail());
         preparedStatement.setInt(17, 0);
-        preparedStatement.setInt(18, client.getState());
-        preparedStatement.setInt(19, client.getCity());
+        preparedStatement.setInt(18, 0);
+        preparedStatement.setInt(19, 0);
         preparedStatement.setString(20, client.getStreet());
         preparedStatement.setString(21, "");
         preparedStatement.setString(22, "");
