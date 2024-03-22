@@ -1,16 +1,19 @@
 package org.example.factory;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.Functions.Get;
-import org.example.TreatmentRows;
+import org.example.Functions.TreatmentVariable;
 import org.example.entidades.Product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ProductFactory implements TreatmentRows {
+public class ProductFactory {
+    DataFormatter dataFormatter = new DataFormatter();
+    TreatmentVariable treatmentVariable = new TreatmentVariable();
 
     public Product produto(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
         Get get = new Get(connection);

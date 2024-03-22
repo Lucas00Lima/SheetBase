@@ -8,13 +8,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.*;
-import org.example.DataAcess;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
-import org.example.TreatmentRows;
 
 
-public class CreateCombo implements TreatmentRows {
+public class CreateCombo {
+    DataFormatter dataFormatter = new DataFormatter();
     public void createCombo(Connection connection, String filePath) throws SQLException, IOException {
         FileInputStream fileInput = new FileInputStream(filePath);
         Workbook workbook = WorkbookFactory.create(fileInput);

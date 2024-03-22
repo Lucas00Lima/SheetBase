@@ -1,16 +1,17 @@
 package org.example.factory;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.Functions.Get;
-import org.example.TreatmentRows;
 import org.example.entidades.Fornecedor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class SupplierFactory implements TreatmentRows {
+public class SupplierFactory {
+    DataFormatter dataFormatter = new DataFormatter();
     public Fornecedor supplier(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
         Get get = new Get(connection);
         Row row = sheet.getRow(rowIndex);
