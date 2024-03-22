@@ -6,9 +6,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.entidades.Service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 public class ServiceFactory {
     DataFormatter dataFormatter = new DataFormatter();
     public Service servic(Sheet sheet, int rowIndex) {

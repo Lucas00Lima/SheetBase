@@ -6,11 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
 import org.apache.poi.ss.usermodel.*;
 import org.example.Functions.Get;
 import org.example.Functions.InsertQuery;
-
 
 public class CreateCombo {
     DataFormatter dataFormatter = new DataFormatter();
