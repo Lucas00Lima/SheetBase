@@ -22,17 +22,15 @@ public class CreateCombo {
         List<String> idList = get.namesCombo();
         for (String id : idList) {
             for (Row row : sheet) {
-                Cell nameCell = row.getCell(2);
                 Cell type2Cell = row.getCell(6);
                 Cell idCell = row.getCell(7);
-                String name = dataFormatter.formatCellValue(nameCell);
                 String type2 = dataFormatter.formatCellValue(type2Cell);
                 String idString = dataFormatter.formatCellValue(idCell);
                 String idProduct = idString.trim();
-                if (idProduct == null || idProduct.equals("") || idProduct.contains("Combo") || get.isCombo(idProduct)) {
+                if (idProduct.isEmpty() || idProduct.contains("Combo") || get.isCombo(idProduct)) {
                     continue;
                 }
-                if (!type2.contains("3") && (!idProduct.isEmpty() || idProduct != null)) {
+                if (!type2.contains("3")) {
                     InsertQuery insertQuery = new InsertQuery();
                     String insertQueryCombo = insertQuery.insert("product_item",connection);
                     PreparedStatement preparedStatement = connection.prepareStatement(insertQueryCombo);

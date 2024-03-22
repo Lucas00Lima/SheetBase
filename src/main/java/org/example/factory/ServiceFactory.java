@@ -11,14 +11,13 @@ import java.sql.SQLException;
 
 public class ServiceFactory {
     DataFormatter dataFormatter = new DataFormatter();
-    public Service servic(Sheet sheet, int rowIndex, Connection connection) throws SQLException {
+    public Service servic(Sheet sheet, int rowIndex) {
         Row row = sheet.getRow(rowIndex);
         Cell idCell = row.getCell(0);
         Cell nameCell = row.getCell(1);
         String id = dataFormatter.formatCellValue(idCell);
         String name = dataFormatter.formatCellValue(nameCell);
-        Service service = new Service(id,name);
-        return service;
+        return new Service(id,name);
     }
 
 }
