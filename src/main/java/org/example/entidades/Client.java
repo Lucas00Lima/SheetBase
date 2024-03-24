@@ -24,10 +24,5 @@ public class Client {
     private int state;
     private int city;
     private String street;
-    private String nameContact1;
-    private String celContact1;
-    private String nameContact2;
-    private String celContact2;
-    private String obs;
     private Date register;
 }
