@@ -23,10 +23,12 @@ public class ClienteFactory {
         client.setName(dataFormatter.formatCellValue(row.getCell(1)));
         //Definir oque é CNPJ ou CPF
         client.setType1(cl.cpfOrCnpj(row.getCell(2)));
-        client.setNumDoc(cl.document(row.getCell(3)));
-        client.setNumDoc2(cl.document(row.getCell(3)));
-
-        client.setCompanyName(dataFormatter.formatCellValue(row.getCell(4)));
+        if (cl.cpfOrCnpj(row.getCell(2)) == 2) {
+            client.setNumDoc(cl.document(row.getCell(3)));
+            client.setCompanyName(dataFormatter.formatCellValue(row.getCell(4)));
+        } else {
+            client.setNumDoc2(cl.document(row.getCell(3)));
+        }
         cl.verifyCell(client, row.getCell(5));
         client.setGender(cl.gender(row.getCell(6)));
         client.setEmail(dataFormatter.formatCellValue(row.getCell(7)));

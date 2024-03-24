@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.example.Functions.InsertQuery;
 import org.example.entidades.Client;
 import org.example.factory.ClienteFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class CreateClient {
         String table = "client";
         Client client = new Client();
         ClienteFactory clientes = new ClienteFactory();
-        clientes.cliente(sheet, rowIndex,connection, client);
+        clientes.cliente(sheet, rowIndex, connection, client);
         InsertQuery insertQuery = new InsertQuery();
         String insertQueryClient = insertQuery.insert(table, connection);
         PreparedStatement preparedStatement = connection.prepareStatement(insertQueryClient);
@@ -26,25 +27,12 @@ public class CreateClient {
         preparedStatement.setInt(7, client.getGender()); // M ou F
         preparedStatement.setDate(8, client.getBirthday());
         preparedStatement.setString(9, "");
-        if (client.getTel() == null && client.getCellPhone() == null) {
-            preparedStatement.setString(10, "");
-            preparedStatement.setString(11, "");
-        } else {
-            if (client.getTel() == null) {
-                preparedStatement.setString(10, "");
-            } else {
-                preparedStatement.setString(10, client.getTel());
-            }
-            if (client.getCellPhone() == null) {
-                preparedStatement.setString(11, "");
-            } else {
-                preparedStatement.setString(11, client.getCellPhone());
-            }
-        }
-        preparedStatement.setString(12, client.getNameContact1());
+        preparedStatement.setString(10, client.getTel());
+        preparedStatement.setString(11, client.getCellPhone());
+        preparedStatement.setString(12, "");
         preparedStatement.setString(13, ""); // phone2
-        preparedStatement.setString(14, client.getCelContact2());
-        preparedStatement.setString(15, client.getNameContact2());
+        preparedStatement.setString(14, "");
+        preparedStatement.setString(15, "");
         preparedStatement.setString(16, client.getEmail());
         preparedStatement.setInt(17, 0);
         preparedStatement.setInt(18, 0);
@@ -55,16 +43,9 @@ public class CreateClient {
         preparedStatement.setInt(23, 0); // neighborhood
         preparedStatement.setString(24, "");
         preparedStatement.setString(25, "");
-
-        if (client.getType1() == 1) {
-            preparedStatement.setString(26, client.getNumDoc()); // doc_number2 = CPF
-            preparedStatement.setString(27, ""); // doc_number3 = CNPJ
-            preparedStatement.setString(28, ""); // doc_number4 = IE
-        } else if (client.getType1() == 2) {
-            preparedStatement.setString(26, ""); // doc_number2 = CPF
-            preparedStatement.setString(27, client.getNumDoc()); // doc_number3 = CNPJ
-            preparedStatement.setString(28, client.getNumDoc2()); // doc_number4 = IE
-        }
+        preparedStatement.setString(26, client.getNumDoc()); // doc_number2 = CPF
+        preparedStatement.setString(27, client.getNumDoc()); // doc_number3 = CNPJ
+        preparedStatement.setString(28, client.getNumDoc2()); // doc_number4 = IE
         preparedStatement.setString(29, "");
         preparedStatement.setInt(30, 0);
         preparedStatement.setString(31, "");
