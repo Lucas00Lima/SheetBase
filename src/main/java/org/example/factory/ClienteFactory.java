@@ -18,7 +18,8 @@ public class ClienteFactory implements TreatmentRows {
         client.setNumDoc2(treatmentVariable.document(row.getCell(3)));//IE
         client.setCompanyName(dataFormatter.formatCellValue(row.getCell(4)));
         treatmentVariable.verifyCell(client,row.getCell(5));
-        client.setGender(treatmentVariable.gender(row.getCell(6)));
+        treatmentVariable.verifyCell2(client, row.getCell(6));
+        client.setGender(treatmentVariable.gender(row.getCell(7)));
         client.setEmail(dataFormatter.formatCellValue(row.getCell(8)));
         client.setBirthday(treatmentVariable.dateBrithday(row.getCell(9)));
         client.setStreet(dataFormatter.formatCellValue(row.getCell(10)));

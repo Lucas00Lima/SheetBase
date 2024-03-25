@@ -13,7 +13,7 @@ public class CreateClient {
         String table = "client";
         Client client = new Client();
         ClienteFactory clientes = new ClienteFactory();
-        clientes.cliente(sheet, rowIndex,connection, client);
+        clientes.cliente(sheet, rowIndex, client);
         InsertQuery insertQuery = new InsertQuery();
         String insertQueryClient = insertQuery.insert(table, connection);
         PreparedStatement preparedStatement = connection.prepareStatement(insertQueryClient);
@@ -26,36 +26,22 @@ public class CreateClient {
         preparedStatement.setInt(7, client.getGender()); // M ou F
         preparedStatement.setDate(8, client.getBirthday());
         preparedStatement.setString(9, "");
-        if (client.getTel() == null && client.getCellPhone() == null) {
-            preparedStatement.setString(10, "");
-            preparedStatement.setString(11, "");
-        } else {
-            if (client.getTel() == null) {
-                preparedStatement.setString(10, "");
-            } else {
-                preparedStatement.setString(10, client.getTel());
-            }
-            if (client.getCellPhone() == null) {
-                preparedStatement.setString(11, "");
-            } else {
-                preparedStatement.setString(11, client.getCellPhone());
-            }
-        }
-        preparedStatement.setString(12, client.getNameContact1());
-        preparedStatement.setString(13, ""); // phone2
-        preparedStatement.setString(14, client.getCelContact2());
-        preparedStatement.setString(15, client.getNameContact2());
+        preparedStatement.setString(10, client.getPhone());
+        preparedStatement.setString(11, client.getCellPhone());
+        preparedStatement.setString(12, "");
+        preparedStatement.setString(13, client.getPhone2()); // phone2
+        preparedStatement.setString(14, client.getCellPhone2());
+        preparedStatement.setString(15, "");
         preparedStatement.setString(16, client.getEmail());
         preparedStatement.setInt(17, 0);
-        preparedStatement.setInt(18, client.getState());
-        preparedStatement.setInt(19, client.getCity());
+        preparedStatement.setInt(18, 0);
+        preparedStatement.setInt(19, 0);
         preparedStatement.setString(20, client.getStreet());
         preparedStatement.setString(21, "");
         preparedStatement.setString(22, "");
         preparedStatement.setInt(23, 0); // neighborhood
         preparedStatement.setString(24, "");
         preparedStatement.setString(25, "");
-
         if (client.getType1() == 1) {
             preparedStatement.setString(26, client.getNumDoc()); // doc_number2 = CPF
             preparedStatement.setString(27, ""); // doc_number3 = CNPJ
@@ -86,6 +72,7 @@ public class CreateClient {
         preparedStatement.setString(47, "");
         preparedStatement.setString(48, "");
         preparedStatement.setInt(49, 0);
+        System.out.println(preparedStatement);
         preparedStatement.execute();
     }
 }
