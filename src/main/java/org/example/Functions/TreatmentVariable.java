@@ -132,7 +132,7 @@ public class TreatmentVariable {
     public Date dateBrithday(Cell valorCell) {
         try {
             String valor = dataFormatter.formatCellValue(valorCell);
-            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) {
+            if (valor == null || valor.isEmpty()) {
                 return null;
             }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
