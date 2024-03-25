@@ -16,18 +16,16 @@ public class Client {
     private int type1;
     private String numDoc2;
     private String companyName;
-    private String tel;
+    private String phone;
     private String cellPhone;
+    private String phone2;
+    private String cellPhone2;
     private int gender;
     private String email;
     private Date birthday;
     private int state;
     private int city;
     private String street;
-    private String nameContact1;
-    private String celContact1;
-    private String nameContact2;
-    private String celContact2;
     private String obs;
     private Date register;
 }
