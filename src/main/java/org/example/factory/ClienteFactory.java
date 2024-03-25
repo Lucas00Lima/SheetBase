@@ -1,19 +1,15 @@
 package org.example.factory;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.Functions.Get;
 import org.example.TreatmentRows;
 import org.example.entidades.Client;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ClienteFactory implements TreatmentRows {
     LocalDate currentDate = LocalDate.now();
 
-    public void cliente(Sheet sheet, int rowIndex, Connection connection, Client client) throws SQLException {
+    public void cliente(Sheet sheet, int rowIndex, Client client) {
         Row row = sheet.getRow(rowIndex);
         client.setId(dataFormatter.formatCellValue(row.getCell(0)));
         client.setName(dataFormatter.formatCellValue(row.getCell(1)));

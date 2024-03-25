@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.example.entidades.Client;
 
 public class TreatmentVariable {
-    private DataFormatter dataFormatter = new DataFormatter();
+    private final DataFormatter dataFormatter = new DataFormatter();
 
     public int variavelValue(String valor) {
         int priceValue;
@@ -97,7 +97,7 @@ public class TreatmentVariable {
         if (valor == null || valor.equals("")) {
             return 0;
         }
-        if (valor.contains("Masculino") || valor.contains("M") || valor.contains("Masculino")) {
+        if (valor.contains("Masculino") || valor.contains("M") || valor.contains("masculino")) {
             return 1;
         } else if (valor.contains("Feminino") || valor.contains("F") || valor.contains("feminino")) {
             return 2;
@@ -114,7 +114,7 @@ public class TreatmentVariable {
         if (matcher.find()) {
             return doc;
         } else {
-            return doc = "";
+            return "";
         }
     }
 
