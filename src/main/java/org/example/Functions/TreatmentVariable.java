@@ -153,59 +153,121 @@ public class TreatmentVariable {
 
     public void verifyCell(Client client, Cell celPhone) {
         String fone = dataFormatter.formatCellValue(celPhone);
-        if (!fone.isEmpty()) {
-            fone = fone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
-            StringBuilder stringBuilder = new StringBuilder(fone);
-            char primeiroCaractere;
-            primeiroCaractere = stringBuilder.charAt(0);
-            if (primeiroCaractere == '0') {
-                stringBuilder.deleteCharAt(0);
+        if (fone.isEmpty() || celPhone == null) {
+            client.setPhone("");
+            client.setCellPhone("");
+            return;
+        }
+        fone = fone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+        StringBuilder stringBuilder = new StringBuilder(fone);
+        char primeiroCaractere;
+        primeiroCaractere = stringBuilder.charAt(0);
+        if (primeiroCaractere == '0') {
+            stringBuilder.deleteCharAt(0);
+        }
+        primeiroCaractere = stringBuilder.charAt(0);
+        if (stringBuilder.length() == 8) {
+            if (primeiroCaractere != '9') { //Numero FIXO
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setPhone(String.valueOf(stringBuilder));
+                client.setCellPhone("");
+            } else { //Celular antigo
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setCellPhone(String.valueOf(stringBuilder));
+                client.setPhone("");
             }
-            if (primeiroCaractere == '9' || primeiroCaractere == '3') {
-                if (fone.length() == 8) {
-                    stringBuilder.insert(0, "(");
-                    stringBuilder.insert(1, "1");
-                    stringBuilder.insert(2, "4");
-                    stringBuilder.insert(3, ")");
-                    stringBuilder.insert(8, "-");
-                    System.out.println(stringBuilder);
-                    client.setTel(String.valueOf(stringBuilder));
-                    client.setCellPhone("");
-                } else if (fone.length() >= 9) {
-                    if (primeiroCaractere == '9') {
-                        stringBuilder.insert(0, "(");
-                        stringBuilder.insert(1, "1");
-                        stringBuilder.insert(2, "4");
-                        stringBuilder.insert(3, ")");
-                        stringBuilder.insert(9, "-");
-                        System.out.println(stringBuilder);
-                        client.setTel("");
-                        client.setCellPhone(String.valueOf(stringBuilder));
-                    } else if (primeiroCaractere == '1') {
-                        stringBuilder.insert(0, "(");
-                        stringBuilder.insert(3, ")");
-                        stringBuilder.insert(8, "-");
-                        System.out.println(stringBuilder);
-                        client.setTel(String.valueOf(stringBuilder));
-                        client.setCellPhone("");
-                    } else {
-                        System.out.println(stringBuilder);
-                        client.setTel(String.valueOf(stringBuilder));
-                        client.setCellPhone("");
-                    }
-                } else if (primeiroCaractere == '1') {
-                    stringBuilder.insert(0, "(");
-                    stringBuilder.insert(3, ")");
-                    stringBuilder.insert(9, "-");
-                    System.out.println(stringBuilder);
-                    client.setTel("");
-                    client.setCellPhone(String.valueOf(stringBuilder));
-                } else {
-                    System.out.println(stringBuilder);
-                    client.setTel("");
-                    client.setCellPhone(String.valueOf(stringBuilder));
-                }
+        } else if (stringBuilder.length() >= 9 && stringBuilder.length() <= 12) { //Celular novo com 2x 9
+            if (primeiroCaractere == '9') {
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(9, "-");
+                System.out.println(stringBuilder);
+                client.setPhone("");
+                client.setCellPhone(String.valueOf(stringBuilder));
+            } else {
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setCellPhone(String.valueOf(stringBuilder));
+                client.setPhone("");
             }
+        } else {
+            System.out.println(stringBuilder);
+            client.setPhone("");
+            client.setCellPhone(String.valueOf(stringBuilder));
+        }
+    }
+
+    public void verifyCell2(Client client, Cell celPhone2) {
+        String fone2 = dataFormatter.formatCellValue(celPhone2);
+        if (fone2.isEmpty() || celPhone2 == null) {
+            client.setPhone2("");
+            client.setCellPhone2("");
+            return;
+        }
+        fone2 = fone2.replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+        StringBuilder stringBuilder = new StringBuilder(fone2);
+        char primeiroCaractere;
+        primeiroCaractere = stringBuilder.charAt(0);
+        if (primeiroCaractere == '0') {
+            stringBuilder.deleteCharAt(0);
+        }
+        primeiroCaractere = stringBuilder.charAt(0);
+        if (stringBuilder.length() == 8) {
+            if (primeiroCaractere != '9') { //Numero FIXO
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setPhone2(String.valueOf(stringBuilder));
+                client.setCellPhone2("");
+            } else { //Celular antigo
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setCellPhone2(String.valueOf(stringBuilder));
+                client.setPhone2("");
+            }
+        } else if (stringBuilder.length() >= 9 && stringBuilder.length() <= 12) { //Celular novo com 2x 9
+            if (primeiroCaractere == '9') {
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(1, "1");
+                stringBuilder.insert(2, "4");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(9, "-");
+                System.out.println(stringBuilder);
+                client.setPhone2("");
+                client.setCellPhone2(String.valueOf(stringBuilder));
+            } else {
+                stringBuilder.insert(0, "(");
+                stringBuilder.insert(3, ")");
+                stringBuilder.insert(8, "-");
+                System.out.println(stringBuilder);
+                client.setCellPhone2(String.valueOf(stringBuilder));
+                client.setPhone2("");
+            }
+        } else {
+            System.out.println(stringBuilder);
+            client.setPhone2("");
+            client.setCellPhone2(String.valueOf(stringBuilder));
         }
     }
 }
