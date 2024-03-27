@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 350);
+        Scene scene = new Scene(fxmlLoader.load(), 850, 500);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/style.css")).toExternalForm());
         stage.setTitle("PlanilhaV5");
         stage.setScene(scene);
