@@ -73,6 +73,7 @@ public class CreateProduct {
             preparedStatement.setNull(54, Types.DATE);//deleted_at);
             preparedStatement.setNull(55, Types.DATE);//manufacturing_date);
             preparedStatement.execute();
+            LogTex.textInfo(product.getInternalCode() + " - " + product.getName());
         } catch (Exception e) {
             LogTex.textError("Erro na criação de Produto");
             LogTex.textError(String.valueOf(e));
