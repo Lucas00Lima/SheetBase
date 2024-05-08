@@ -30,9 +30,11 @@ public class Update {
             addStatement.addBatch(update + "next_id SET neighborhood_id = " + idNeighborhood);
             addStatement.addBatch(update + "app_config SET waiter_devices = " + waiterdevices);
             addStatement.addBatch(update + "general_configuration SET value = " + waiterdevices + " where `key` = 'connectedAppLimit';");
+            addStatement.addBatch("insert into general_configuration (`key`,value,module) values ('askForSetNumPeopleTable','true','card_config');");
             addStatement.executeBatch();
             addStatement.execute();
             LogTex.textInfo("Habilitado " + waiterdevices + " Dispositivos");
+            LogTex.textInfo("Classe Update concluida");
         } catch (SQLException e) {
             LogTex.textError("Erro no Update");
             LogTex.textError(String.valueOf(e));
