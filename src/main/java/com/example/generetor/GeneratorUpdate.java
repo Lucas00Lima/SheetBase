@@ -59,6 +59,9 @@ public class GeneratorUpdate {
                 String pisCod = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("PIS Cod")));
                 String pisAString = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("PIS Aliq")));
                 pisAString = pisAString.replace(",", "");
+                if (pisAString.length() == 1 ) {
+                    pisAString = pisAString + "0" + "0";
+                }
                 pisAString = pisAString + "0";
                 int pisA = Integer.parseInt(pisAString);
 
@@ -66,7 +69,10 @@ public class GeneratorUpdate {
                 cofinsCod = "0" + cofinsCod;
                 String cofinsAString = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("COFINS Aliq")));
                 cofinsAString = cofinsAString.replace(",", "");
-                cofinsAString = cofinsAString + "0" + "0" + "0";
+                if (cofinsAString.length() == 1) {
+                    cofinsAString = cofinsAString + "0" + "0";
+                }
+                cofinsAString = cofinsAString + "0";
                 int cofinsA = Integer.parseInt(cofinsAString);
 
                 String sql = "UPDATE product " +
