@@ -10,6 +10,7 @@ import java.sql.*;
 //FIXME: INSERI EXCEPTION QUE QUANDO ACIONADA ELE TRAVA O PROGRAMA, REPASSAR ISSO PARA AS OUTRAS CLASSES
 public class CreateProduct {
     private final InsertQuery insertQuery = new InsertQuery();
+    @lombok.SneakyThrows
     public void createProduct(Connection connection, Sheet sheet, int rowIndex) {
         try {
             String table = "product";
