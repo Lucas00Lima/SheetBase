@@ -1,6 +1,5 @@
 package com.example.query;
 
-import javax.swing.*;
 import java.io.*;
 
 public class Backup {
