@@ -66,6 +66,8 @@ public class Generator {
                         createExtra.createExtra(connection);
                         Update update = new Update();
                         update.update(connection);
+                        Backup backup = new Backup();
+                        backup.generateBackup();
                         LogTex.textInfo("Tudo Concluido");
                         break;
                     case "client":
