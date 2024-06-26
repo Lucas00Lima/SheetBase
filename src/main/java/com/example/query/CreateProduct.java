@@ -12,10 +12,10 @@ public class CreateProduct {
     private final InsertQuery insertQuery = new InsertQuery();
     @lombok.SneakyThrows
     public void createProduct(Connection connection, Sheet sheet, int rowIndex) {
+        String table = "product";
+        ProductFactory produto = new ProductFactory();
+        Product product = produto.produto(sheet, rowIndex, connection);
         try {
-            String table = "product";
-            ProductFactory produto = new ProductFactory();
-            Product product = produto.produto(sheet, rowIndex, connection);
             String insertQueryProduct = insertQuery.insert(table, connection);
             PreparedStatement preparedStatement = connection.prepareStatement(insertQueryProduct);
             preparedStatement.setString(1, product.getName());//nameValue);
@@ -77,6 +77,7 @@ public class CreateProduct {
             LogTex.textInfo(product.getInternalCode() + " - " + product.getName());
         } catch (Exception e) {
             LogTex.textError("Erro na criação de Produto");
+            LogTex.textError(product.getName());
             LogTex.textError(String.valueOf(e));
             throw new RuntimeException("Erro na criação de Produto", e);
         }
