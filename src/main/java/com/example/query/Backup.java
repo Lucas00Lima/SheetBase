@@ -5,7 +5,7 @@ import java.io.*;
 public class Backup {
 
     public void generateBackup() {
-        String filePath = "C:\\Users\\lukin\\Desktop\\Temporaria\\Bancos\\bancoCliente.sql";
+        String filePath = "";
         String username = "root";
         String password = "@soma+";
         String databaseName = "db000";

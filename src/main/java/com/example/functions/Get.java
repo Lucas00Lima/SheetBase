@@ -59,8 +59,7 @@ public class Get {
         try {
             String query = "SELECT MAX(id) AS last_id FROM ";
             int totalId = -1;
-            PreparedStatement queryInsertId;
-            queryInsertId = connection.prepareStatement(query + table);
+            PreparedStatement queryInsertId = connection.prepareStatement(query + table);
             ResultSet resultSet = queryInsertId.executeQuery();
             if (resultSet.next()) {
                 totalId = resultSet.getInt("last_id");

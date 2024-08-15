@@ -70,7 +70,7 @@ public class TreatmentVariable {
     }
     public int tratmentZero(String valor) {
         int valueZero;
-        if (valor.isEmpty()) {
+        if (valor.isEmpty() || valor == null) {
             valueZero = 0;
         } else {
             valueZero = Integer.parseInt(valor);
