@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="containerMaster" prefHeight="330.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HelloController">
     <stylesheets>
-        <String fx:value="/com/example/style.css" />
+        <String fx:value="/example/style.css" />
     </stylesheets>
     <GridPane fx:id="gridPane" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>

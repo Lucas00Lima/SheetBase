@@ -12,10 +12,10 @@ import java.util.Objects;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/example/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/example/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 500);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/example/style.css")).toExternalForm());
-        stage.setTitle("PlanilhaV5");
+        stage.setTitle("Gerador Planilha");
         stage.setScene(scene);
         stage.show();
         centerStage(stage);
