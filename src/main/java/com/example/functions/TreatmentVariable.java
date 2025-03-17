@@ -12,42 +12,25 @@ import com.example.LogTex;
 
 public class TreatmentVariable {
     private final DataFormatter dataFormatter = new DataFormatter();
+
     public int variavelValue(String valor) {
-        int priceValue;
-        if (valor.isEmpty()) {
-            priceValue = 0;
-        } else if (valor.contains(",") && valor.contains(".")) {
-            valor = valor.replace(".", "");
-            valor = valor.replace(",", "");
-            priceValue = Integer.parseInt(valor);
-        } else if (valor.contains(",")) {
-            int index = valor.indexOf(",");
-            valor = valor.replace(",", "");
-            if (valor.length() == 1) {
-                priceValue = Integer.parseInt(valor) * 100;
-            } else if (valor.length() == 2) {
-                priceValue = Integer.parseInt(valor) * 10;
-            } else if (index == 2 && valor.length() == 3) {
-                valor += "0";
-                priceValue = Integer.parseInt(valor);
-            } else if (index != 2 && valor.length() == 3) {
-                priceValue = Integer.parseInt(valor);
-            } else {
-                priceValue = Integer.parseInt(valor);
-            }
-        } else {
-            if (valor.length() == 1) {
-                priceValue = Integer.parseInt(valor) * 100;
-            } else if (valor.length() == 2) {
-                priceValue = Integer.parseInt(valor) * 100;
-            } else if (valor.length() == 3) {
-                priceValue = Integer.parseInt(valor) * 100;
-            } else {
-                priceValue = Integer.parseInt(valor);
-            }
+        if (valor == null || valor.isEmpty()) {
+            return 0;
         }
-        return priceValue;
+        String normalizedValue = valor;
+        if (normalizedValue.contains(",") && normalizedValue.contains(".")) {
+            normalizedValue = normalizedValue.replace(".", "").replace(",", ".");
+        } else if (normalizedValue.contains(",")) {
+            normalizedValue = normalizedValue.replace(",", ".");
+        }
+        try {
+            double amount = Double.parseDouble(normalizedValue);
+            return (int) Math.round(amount * 100);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
+
     public int tratmentIcms(Cell icmsCell) {
         String valor = dataFormatter.formatCellValue(icmsCell);
         int value;
@@ -58,6 +41,7 @@ public class TreatmentVariable {
         }
         return value;
     }
+
     public int tratmentOrigem(Cell valorCell) {
         String valor = dataFormatter.formatCellValue(valorCell);
         int valueZero;
@@ -68,6 +52,7 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
+
     public int tratmentZero(String valor) {
         int valueZero;
         if (valor.isEmpty() || valor == null) {
@@ -77,6 +62,7 @@ public class TreatmentVariable {
         }
         return valueZero;
     }
+
     public int cpfOrCnpj(Cell numDocCell) {
         String valor = dataFormatter.formatCellValue(numDocCell).replaceAll("\\D", "");
         if (valor.isEmpty()) {
@@ -89,9 +75,12 @@ public class TreatmentVariable {
             return 0;
         }
     }
+
     public int gender(Cell genderCell) {
         String valor = dataFormatter.formatCellValue(genderCell);
-        if ( valor == null || valor.isEmpty()) { return 0; }
+        if (valor == null || valor.isEmpty()) {
+            return 0;
+        }
         if (valor.contains("Masculino") || valor.contains("M") || valor.contains("masculino")) {
             return 1;
         } else if (valor.contains("Feminino") || valor.contains("F") || valor.contains("feminino")) {
@@ -100,6 +89,7 @@ public class TreatmentVariable {
             return 0;
         }
     }
+
     public String document(Cell valorCell) {
         String doc = dataFormatter.formatCellValue(valorCell);
         String regex = "[1-9]";
@@ -111,20 +101,21 @@ public class TreatmentVariable {
             return doc = "";
         }
     }
+
     //TODO: colocar um verificador de ID
     public int idClient(Cell codeCell) {
         if (codeCell == null) {
-
         }
         int id = Integer.parseInt(dataFormatter.formatCellValue(codeCell));
-
-
         return id;
     }
+
     public Date dateBrithday(Cell valorCell) {
         try {
             String valor = dataFormatter.formatCellValue(valorCell);
-            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) { return null; }
+            if (valor == null || valor.isEmpty() || valor.contains("") || valor.contains(" ")) {
+                return null;
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
             return (Date) formatter.parse(valor);
         } catch (ParseException e) {
@@ -132,11 +123,15 @@ public class TreatmentVariable {
         }
         return null;
     }
+
     public String measureUnit(Cell measureUnitCell) {
         String measureUnit = dataFormatter.formatCellValue(measureUnitCell);
-        if (measureUnit.isEmpty()) { measureUnit = "u"; }
+        if (measureUnit.isEmpty()) {
+            measureUnit = "u";
+        }
         return measureUnit;
     }
+
     public String celTreatment(Cell celFone) {
         String fone = dataFormatter.formatCellValue(celFone);
         StringBuilder stringBuilder = new StringBuilder(fone);
