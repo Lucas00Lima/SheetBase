@@ -85,7 +85,9 @@ public class CreateExtra {
             vincularCodigo.setInt(52, 0);//window_notes);
             vincularCodigo.setInt(53, 0);//produced);
             vincularCodigo.setNull(54, Types.DATE);//deleted_at);
-            vincularCodigo.setNull(55, Types.DATE);//manufacturing_date);
+            vincularCodigo.setInt(55, 0);//ad_rem_tax);
+            vincularCodigo.setInt(56, 0);//no_tax_value);
+            vincularCodigo.setNull(57, Types.DATE);//manufacturing_date);
             vincularCodigo.execute();
         } catch (SQLException e) {
             LogTex.textError("Erro na criação de Produto Extra");

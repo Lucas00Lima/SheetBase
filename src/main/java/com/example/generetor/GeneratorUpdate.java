@@ -53,7 +53,7 @@ public class GeneratorUpdate {
                 }
                 String icmsString = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("ICMS Aliq")));
                 icmsString = icmsString.replace(",", "");
-                icmsString = icmsString + "0" + "0" + "0";
+                icmsString = icmsString + "0";
                 int icms = Integer.parseInt(icmsString);
 
                 String pisCod = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("PIS Cod")));
@@ -66,7 +66,7 @@ public class GeneratorUpdate {
                 int pisA = Integer.parseInt(pisAString);
 
                 String cofinsCod = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("COFINS Cod")));
-                cofinsCod = "0" + cofinsCod;
+                cofinsCod =  cofinsCod;
                 String cofinsAString = dataFormatter.formatCellValue(row.getCell(findColumns.localizarColunas("COFINS Aliq")));
                 cofinsAString = cofinsAString.replace(",", "");
                 if (cofinsAString.length() == 1) {

@@ -72,7 +72,9 @@ public class CreateProduct {
             preparedStatement.setInt(52, 0);//window_notes);
             preparedStatement.setInt(53, 0);//produced);
             preparedStatement.setNull(54, Types.DATE);//deleted_at);
-            preparedStatement.setNull(55, Types.DATE);//manufacturing_date);
+            preparedStatement.setInt(55, 0);//ad_rem_tax);
+            preparedStatement.setInt(56, 0);//no_tax_value);
+            preparedStatement.setNull(57, Types.DATE);//manufacturing_date);
             preparedStatement.execute();
             LogTex.textInfo(product.getInternalCode() + " - " + product.getName());
         } catch (Exception e) {
